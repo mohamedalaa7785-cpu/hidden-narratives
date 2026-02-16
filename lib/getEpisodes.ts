@@ -5,6 +5,8 @@ import matter from "gray-matter"
 const dir = path.join(process.cwd(), "content/episodes")
 
 export function getEpisodes() {
+  if (!fs.existsSync(dir)) return []
+
   const files = fs.readdirSync(dir)
 
   return files.map((file) => {
