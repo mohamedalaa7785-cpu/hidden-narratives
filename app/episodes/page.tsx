@@ -1,6 +1,5 @@
-import EpisodeCard from "@/components/EpisodeCard"
-import { getEpisodes } from "@/lib/getEpisodes"
-
+import EpisodeCard from "../../components/EpisodeCard"
+import { getEpisodes } from "../../lib/getEpisodes"
 
 export default function Episodes() {
   const episodes = getEpisodes()
