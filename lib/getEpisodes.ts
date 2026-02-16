@@ -16,3 +16,7 @@ export function getEpisodes() {
   })
 }
 
+export function getEpisodesByCategory(category: string) {
+  const episodes = getEpisodes()
+  return episodes.filter((ep: any) => ep.category === category)
+}
