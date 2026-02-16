@@ -1,0 +1,51 @@
+:root {
+  --black: #0f0f0f;
+  --gold: #b08d57;
+  --gray: #bfbfbf;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--gray);
+  font-family: serif;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  color: var(--gold);
+  font-size: 3rem;
+}
+
+.section {
+  padding: 80px;
+}
+
+.card {
+  border: 1px solid #222;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid #222;
+}
+
+.rtl {
+  direction: rtl;
+}
