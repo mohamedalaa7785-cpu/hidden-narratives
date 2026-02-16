@@ -1,11 +1,11 @@
-import type { MetadataRoute } from 'next'
+import { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/'
+      userAgent: "*",
+      allow: "/",
     },
-    sitemap: 'https://hiddennarratives.vercel.app/sitemap.xml'
+    sitemap: "https://mohamedalaa7785-cpu-hidden-narratives-g2weiut95-hamo-projects.vercel.app/sitemap.xml",
   }
 }
