@@ -32,62 +32,50 @@ export default function RootLayout({
         />
       </head>
 
-      <body style={{
-        margin: 0,
-        background: "#0d0d0d",
-        color: "white",
-        fontFamily: "Arial, sans-serif"
-      }}>
-        <header style={{
-          padding: "20px 40px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderBottom: "1px solid #222",
-          flexWrap: "wrap"
-        }}>
+      <body
+        style={{
+          margin: 0,
+          background: "#0d0d0d",
+          color: "white",
+          fontFamily: "Arial, sans-serif"
+        }}
+      >
+        <header
+          style={{
+            padding: "20px 40px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderBottom: "1px solid #222",
+            flexWrap: "wrap"
+          }}
+        >
           <h2 style={{ margin: 0, color: "#b08d57" }}>
             Hidden Narratives
           </h2>
 
-          <nav style={{
-            display: "flex",
-            gap: "20px",
-            alignItems: "center",
-            flexWrap: "wrap"
-          }}>
-            <Link href="/" style={{ color: "white", textDecoration: "none" }}>
-              Home
-            </Link>
+          <nav
+            style={{
+              display: "flex",
+              gap: "25px",
+              alignItems: "center",
+              flexWrap: "wrap"
+            }}
+          >
+            <Link href="/" style={navLink}>Home</Link>
+            <Link href="/episodes" style={navLink}>Episodes</Link>
+            <Link href="/videos" style={navLink}>Videos</Link>
+            <Link href="/tools" style={navLink}>Tools</Link>
+            <Link href="/about" style={navLink}>About</Link>
+            <Link href="/contact" style={navLink}>Contact</Link>
 
-            <Link href="/episodes" style={{ color: "white", textDecoration: "none" }}>
-              Episodes
-            </Link>
-
-            <Link href="/videos" style={{ color: "white", textDecoration: "none" }}>
-              Videos
-            </Link>
-
-            <Link href="/about" style={{ color: "white", textDecoration: "none" }}>
-              About
-            </Link>
-
-            <Link href="/contact" style={{ color: "white", textDecoration: "none" }}>
-              Contact
-            </Link>
+            <div style={divider} />
 
             <a
               href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                padding: "8px 14px",
-                background: "#b08d57",
-                color: "#000",
-                borderRadius: "6px",
-                textDecoration: "none",
-                fontWeight: "bold"
-              }}
+              style={youtubeBtn}
             >
               YouTube
             </a>
@@ -96,14 +84,7 @@ export default function RootLayout({
               href="https://www.linkedin.com/in/muhammed-alaa-0169b3385"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                padding: "8px 14px",
-                background: "#0A66C2",
-                color: "#fff",
-                borderRadius: "6px",
-                textDecoration: "none",
-                fontWeight: "bold"
-              }}
+              style={linkedinBtn}
             >
               LinkedIn
             </a>
@@ -112,16 +93,49 @@ export default function RootLayout({
 
         {children}
 
-        <footer style={{
-          padding: "30px",
-          textAlign: "center",
-          borderTop: "1px solid #222",
-          marginTop: "60px",
-          color: "#777"
-        }}>
+        <footer
+          style={{
+            padding: "30px",
+            textAlign: "center",
+            borderTop: "1px solid #222",
+            marginTop: "60px",
+            color: "#777"
+          }}
+        >
           © {new Date().getFullYear()} Hidden Narratives
         </footer>
       </body>
     </html>
   )
+}
+
+const navLink: React.CSSProperties = {
+  color: "white",
+  textDecoration: "none",
+  fontWeight: 500,
+  transition: "0.3s"
+}
+
+const divider: React.CSSProperties = {
+  width: "1px",
+  height: "20px",
+  background: "#333"
+}
+
+const youtubeBtn: React.CSSProperties = {
+  padding: "8px 16px",
+  background: "linear-gradient(135deg,#b08d57,#d4af37)",
+  color: "#000",
+  borderRadius: "20px",
+  textDecoration: "none",
+  fontWeight: "bold"
+}
+
+const linkedinBtn: React.CSSProperties = {
+  padding: "8px 16px",
+  background: "#0A66C2",
+  color: "#fff",
+  borderRadius: "20px",
+  textDecoration: "none",
+  fontWeight: "bold"
 }
