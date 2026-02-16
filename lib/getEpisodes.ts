@@ -1,1 +1,18 @@
+import fs from "fs"
+import path from "path"
+import matter from "gray-matter"
+
+const dir = path.join(process.cwd(), "content/episodes")
+
+export function getEpisodes() {
+  const files = fs.readdirSync(dir)
+
+  return files.map((file) => {
+    const slug = file.replace(".md", "")
+    const content = fs.readFileSync(path.join(dir, file), "utf8")
+    const { data } = matter(content)
+
+    return { slug, ...data }
+  })
+}
 
