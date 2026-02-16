@@ -1,3 +1,9 @@
+export async function generateMetadata({ params }: any) {
+  return {
+    title: `${params.slug} | Hidden Narratives`,
+    description: "Dark historical analysis and untold narratives."
+  }
+}
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
