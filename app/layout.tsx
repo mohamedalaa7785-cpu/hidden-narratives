@@ -1,5 +1,6 @@
 import "./globals.css"
 import type { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Hidden Narratives",
@@ -31,42 +32,64 @@ export default function RootLayout({
         />
       </head>
 
-      <body
-        style={{
-          margin: 0,
-          background: "#0d0d0d",
-          color: "white",
-          fontFamily: "Arial, sans-serif"
-        }}
-      >
-        <header
-          style={{
-            padding: "20px 40px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            borderBottom: "1px solid #222"
-          }}
-        >
+      <body style={{
+        margin: 0,
+        background: "#0d0d0d",
+        color: "white",
+        fontFamily: "Arial, sans-serif"
+      }}>
+        <header style={{
+          padding: "20px 40px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          borderBottom: "1px solid #222",
+          flexWrap: "wrap"
+        }}>
           <h2 style={{ margin: 0, color: "#b08d57" }}>
             Hidden Narratives
           </h2>
 
-          <div style={{ display: "flex", gap: "15px" }}>
+          <nav style={{
+            display: "flex",
+            gap: "20px",
+            alignItems: "center",
+            flexWrap: "wrap"
+          }}>
+            <Link href="/" style={{ color: "white", textDecoration: "none" }}>
+              Home
+            </Link>
+
+            <Link href="/episodes" style={{ color: "white", textDecoration: "none" }}>
+              Episodes
+            </Link>
+
+            <Link href="/videos" style={{ color: "white", textDecoration: "none" }}>
+              Videos
+            </Link>
+
+            <Link href="/about" style={{ color: "white", textDecoration: "none" }}>
+              About
+            </Link>
+
+            <Link href="/contact" style={{ color: "white", textDecoration: "none" }}>
+              Contact
+            </Link>
+
             <a
               href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                padding: "10px 18px",
+                padding: "8px 14px",
                 background: "#b08d57",
                 color: "#000",
-                borderRadius: "8px",
+                borderRadius: "6px",
                 textDecoration: "none",
                 fontWeight: "bold"
               }}
             >
-              Subscribe on YouTube
+              YouTube
             </a>
 
             <a
@@ -74,33 +97,31 @@ export default function RootLayout({
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                padding: "10px 18px",
+                padding: "8px 14px",
                 background: "#0A66C2",
                 color: "#fff",
-                borderRadius: "8px",
+                borderRadius: "6px",
                 textDecoration: "none",
                 fontWeight: "bold"
               }}
             >
               LinkedIn
             </a>
-          </div>
+          </nav>
         </header>
 
         {children}
 
-        <footer
-          style={{
-            padding: "30px",
-            textAlign: "center",
-            borderTop: "1px solid #222",
-            marginTop: "60px",
-            color: "#777"
-          }}
-        >
+        <footer style={{
+          padding: "30px",
+          textAlign: "center",
+          borderTop: "1px solid #222",
+          marginTop: "60px",
+          color: "#777"
+        }}>
           © {new Date().getFullYear()} Hidden Narratives
         </footer>
       </body>
     </html>
   )
-              }
+}
