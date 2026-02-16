@@ -15,6 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+
+        {/* Organization Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -30,6 +32,27 @@ export default function RootLayout({
             }`
           }}
         />
+
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
+        />
+
+        {/* Google AdSense Placeholder */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX"
+          crossOrigin="anonymous"
+        ></script>
+
       </head>
 
       <body
@@ -54,14 +77,7 @@ export default function RootLayout({
             Hidden Narratives
           </h2>
 
-          <nav
-            style={{
-              display: "flex",
-              gap: "25px",
-              alignItems: "center",
-              flexWrap: "wrap"
-            }}
-          >
+          <nav style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
             <Link href="/" style={navLink}>Home</Link>
             <Link href="/episodes" style={navLink}>Episodes</Link>
             <Link href="/videos" style={navLink}>Videos</Link>
@@ -69,23 +85,15 @@ export default function RootLayout({
             <Link href="/about" style={navLink}>About</Link>
             <Link href="/contact" style={navLink}>Contact</Link>
 
-            <div style={divider} />
-
-            <a
-              href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
+            <a href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
               target="_blank"
-              rel="noopener noreferrer"
-              style={youtubeBtn}
-            >
+              style={socialBtnGold}>
               YouTube
             </a>
 
-            <a
-              href="https://www.linkedin.com/in/muhammed-alaa-0169b3385"
+            <a href="https://www.linkedin.com/in/muhammed-alaa-0169b3385"
               target="_blank"
-              rel="noopener noreferrer"
-              style={linkedinBtn}
-            >
+              style={socialBtnBlue}>
               LinkedIn
             </a>
           </nav>
@@ -93,49 +101,51 @@ export default function RootLayout({
 
         {children}
 
-        <footer
-          style={{
-            padding: "30px",
-            textAlign: "center",
-            borderTop: "1px solid #222",
-            marginTop: "60px",
-            color: "#777"
-          }}
-        >
+        <footer style={{
+          padding: "30px",
+          textAlign: "center",
+          borderTop: "1px solid #222",
+          marginTop: "60px",
+          color: "#777"
+        }}>
+          <div style={{ marginBottom: "10px" }}>
+            <Link href="/privacy" style={footerLink}>Privacy</Link> |
+            <Link href="/terms" style={footerLink}> Terms</Link> |
+            <Link href="/disclaimer" style={footerLink}> Disclaimer</Link>
+          </div>
           © {new Date().getFullYear()} Hidden Narratives
         </footer>
+
       </body>
     </html>
   )
 }
 
-const navLink: React.CSSProperties = {
+const navLink = {
   color: "white",
+  textDecoration: "none"
+}
+
+const footerLink = {
+  color: "#b08d57",
   textDecoration: "none",
-  fontWeight: 500,
-  transition: "0.3s"
+  margin: "0 8px"
 }
 
-const divider: React.CSSProperties = {
-  width: "1px",
-  height: "20px",
-  background: "#333"
-}
-
-const youtubeBtn: React.CSSProperties = {
-  padding: "8px 16px",
-  background: "linear-gradient(135deg,#b08d57,#d4af37)",
+const socialBtnGold = {
+  padding: "6px 14px",
+  background: "#b08d57",
   color: "#000",
   borderRadius: "20px",
   textDecoration: "none",
   fontWeight: "bold"
 }
 
-const linkedinBtn: React.CSSProperties = {
-  padding: "8px 16px",
+const socialBtnBlue = {
+  padding: "6px 14px",
   background: "#0A66C2",
   color: "#fff",
   borderRadius: "20px",
   textDecoration: "none",
   fontWeight: "bold"
-}
+            }
