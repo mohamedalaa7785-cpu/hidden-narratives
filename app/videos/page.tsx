@@ -1,9 +1,10 @@
 async function getVideos() {
+  const API_KEY = process.env.YOUTUBE_API_KEY
+  const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/youtube`,
-    {
-      cache: "no-store"
-    }
+    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=6`,
+    { cache: "no-store" }
   )
 
   if (!res.ok) {
@@ -56,36 +57,21 @@ export default async function Videos() {
                 background: "#141414",
                 borderRadius: "12px",
                 overflow: "hidden",
-                border: "1px solid #222",
-                transition: "0.3s"
+                border: "1px solid #222"
               }}
             >
               <img
                 src={video.snippet.thumbnails.medium.url}
                 alt={video.snippet.title}
-                style={{
-                  width: "100%",
-                  display: "block"
-                }}
+                style={{ width: "100%" }}
               />
 
               <div style={{ padding: "15px" }}>
-                <h3
-                  style={{
-                    fontSize: "16px",
-                    lineHeight: "1.4",
-                    marginBottom: "10px"
-                  }}
-                >
+                <h3 style={{ fontSize: "16px" }}>
                   {video.snippet.title}
                 </h3>
 
-                <p
-                  style={{
-                    fontSize: "12px",
-                    color: "#888"
-                  }}
-                >
+                <p style={{ fontSize: "12px", color: "#888" }}>
                   {new Date(video.snippet.publishedAt).toDateString()}
                 </p>
               </div>
@@ -95,4 +81,4 @@ export default async function Videos() {
       </div>
     </main>
   )
-                  }
+            }
