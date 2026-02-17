@@ -17,7 +17,7 @@ export default function SearchPage() {
 
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="Search by title..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         style={{
@@ -47,10 +47,11 @@ export default function SearchPage() {
               textDecoration: "none"
             }}
           >
-            {article.title}
+            <h4>{article.title}</h4>
+            <p style={{ color: "#aaa" }}>{article.description}</p>
           </Link>
         ))}
       </div>
     </main>
   )
-              }
+}
