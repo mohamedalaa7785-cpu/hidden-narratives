@@ -1,67 +1,105 @@
-:root {
-  --black: #0f0f0f;
-  --gold: #b08d57;
-  --gray: #bfbfbf;
-}
+/* ===== GLOBAL ===== */
 
 body {
   margin: 0;
-  background: var(--black);
-  color: var(--gray);
-  font-family: serif;
+  background: #0d0d0d;
+  color: #e6e6e6;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* ===== HEADER ===== */
+
+.header {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1f1f1f;
+  background: rgba(10,10,10,0.9);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  margin: 0;
+  font-weight: 600;
+  color: #b08d57;
+  letter-spacing: 1px;
 }
 
 .nav {
   display: flex;
   gap: 20px;
-  padding: 20px;
-}
-
-.hero {
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
-.hero h1 {
-  color: var(--gold);
-  font-size: 3rem;
+/* ===== BUTTONS ===== */
+
+.ytBtn {
+  padding: 6px 14px;
+  background: #b08d57;
+  color: #000;
+  border-radius: 20px;
+  font-weight: bold;
 }
 
-.section {
-  padding: 80px;
+.liBtn {
+  padding: 6px 14px;
+  background: #0A66C2;
+  border-radius: 20px;
+  font-weight: bold;
 }
 
-.card {
-  border: 1px solid #222;
-  padding: 20px;
-  margin: 20px 0;
-}
+/* ===== FOOTER ===== */
 
 .footer {
+  margin-top: 80px;
+  padding: 40px;
   text-align: center;
-  padding: 30px;
-  border-top: 1px solid #222;
+  border-top: 1px solid #1f1f1f;
+  color: #777;
 }
 
-.rtl {
-  direction: rtl;
-}
-input, textarea {
-  padding: 10px;
-  margin: 10px 0;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: white;
-  width: 100%;
-  max-width: 400px;
+/* ===== CARDS ===== */
+
+.card {
+  background: #141414;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #1f1f1f;
+  transition: 0.3s ease;
 }
 
-button {
-  padding: 10px 20px;
-  background: #b08d57;
-  border: none;
-  cursor: pointer;
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #b08d57;
+  box-shadow: 0 10px 30px rgba(176,141,87,0.15);
 }
+
+/* ===== HERO ===== */
+
+.hero {
+  text-align: center;
+  padding: 140px 20px;
+  background: linear-gradient(to bottom, #0d0d0d, #111);
+}
+
+.hero h1 {
+  font-size: 48px;
+  color: #b08d57;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: #aaa;
+  margin-bottom: 30px;
+                               }
