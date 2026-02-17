@@ -1,13 +1,15 @@
-export async function generateMetadata({ params }: any) {
-  return {
-    title: `${params.slug} | Hidden Narratives`,
-    description: "Dark historical analysis and untold narratives."
-  }
-}
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
 import { marked } from "marked"
+import RelatedArticles from "@/app/components/RelatedArticles"
+
+export async function generateMetadata({ params }: any) {
+  return {
+    title: `${params.slug.replace(/-/g, " ")} | Hidden Narratives`,
+    description: "Deep historical analysis and investigative storytelling."
+  }
+}
 
 export default function Episode({ params }: any) {
   const filePath = path.join(
@@ -17,13 +19,13 @@ export default function Episode({ params }: any) {
   )
 
   const file = fs.readFileSync(filePath, "utf8")
-  const { content, data } = matter(file)
+  const { content } = matter(file)
   const html = marked(content)
 
   return (
-    <main className="section">
-      <h1>{data.title}</h1>
+    <main style={{ padding: "60px 40px" }}>
       <div dangerouslySetInnerHTML={{ __html: html }} />
+      <RelatedArticles slug={params.slug} />
     </main>
   )
 }
