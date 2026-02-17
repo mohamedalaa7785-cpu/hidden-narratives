@@ -2,52 +2,92 @@ import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
 import Link from "next/link"
-import SearchBar from "../components/SearchBar"
-import Pagination from "../components/Pagination"
 
-export default function Episodes({ searchParams }: any) {
+const POSTS_PER_PAGE = 6
+
+function getArticles() {
   const dir = path.join(process.cwd(), "content/episodes")
   const files = fs.readdirSync(dir)
 
-  const articles = files.map(file => {
+  return files.map((file) => {
     const slug = file.replace(".md", "")
     const filePath = path.join(dir, file)
-    const md = fs.readFileSync(filePath, "utf8")
-    const { data } = matter(md)
+    const content = fs.readFileSync(filePath, "utf8")
+    const { data } = matter(content)
+
     return {
       slug,
-      title: data.title,
-      tags: data.tags || [],
-      category: data.category || ""
+      ...data,
     }
   })
+}
 
-  // Pagination logic
-  const page = parseInt(searchParams?.page || "1")
-  const perPage = 7
-  const start = (page - 1) * perPage
-  const paginated = articles.slice(start, start + perPage)
-  const totalPages = Math.ceil(articles.length / perPage)
+export default function EpisodesPage({
+  searchParams,
+}: {
+  searchParams: { page?: string }
+}) {
+  const articles = getArticles()
+  const page = parseInt(searchParams.page || "1")
+  const start = (page - 1) * POSTS_PER_PAGE
+  const end = start + POSTS_PER_PAGE
+  const totalPages = Math.ceil(articles.length / POSTS_PER_PAGE)
+
+  const paginated = articles.slice(start, end)
 
   return (
     <main style={{ padding: "60px 40px" }}>
-      <h1 style={{ color: "#d4af37" }}>All Articles</h1>
+      <h1 style={{ color: "#b08d57", marginBottom: "40px" }}>
+        All Episodes
+      </h1>
 
-      {/* Search + Filters */}
-      <SearchBar articles={articles} />
-
-      <ul>
-        {paginated.map(article => (
-          <li key={article.slug}>
-            <Link href={`/episodes/${article.slug}`} style={{ color: "#ccc" }}>
-              {article.title}
-            </Link>
-          </li>
+      <div style={grid}>
+        {paginated.map((article) => (
+          <Link
+            key={article.slug}
+            href={`/episodes/${article.slug}`}
+            style={card}
+          >
+            <h3>{article.title}</h3>
+            <p>{article.description}</p>
+          </Link>
         ))}
-      </ul>
+      </div>
 
       {/* Pagination */}
-      <Pagination currentPage={page} totalPages={totalPages} />
+      <div style={{ marginTop: "60px", textAlign: "center" }}>
+        {Array.from({ length: totalPages }, (_, i) => (
+          <Link
+            key={i}
+            href={`/episodes?page=${i + 1}`}
+            style={{
+              margin: "0 8px",
+              padding: "8px 14px",
+              background: page === i + 1 ? "#b08d57" : "#141414",
+              color: page === i + 1 ? "#000" : "#fff",
+              borderRadius: "6px",
+              textDecoration: "none"
+            }}
+          >
+            {i + 1}
+          </Link>
+        ))}
+      </div>
     </main>
   )
 }
+
+const grid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+  gap: "25px"
+}
+
+const card = {
+  background: "#141414",
+  padding: "20px",
+  borderRadius: "12px",
+  textDecoration: "none",
+  color: "white",
+  border: "1px solid #222"
+      }
