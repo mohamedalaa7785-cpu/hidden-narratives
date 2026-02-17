@@ -27,7 +27,7 @@ export default function Pagination({
 const btn = {
   marginRight: "15px",
   padding: "6px 12px",
-  background: "#b08d57",
+  background: "#d4af37",
   color: "#000",
   borderRadius: "6px",
   textDecoration: "none"
