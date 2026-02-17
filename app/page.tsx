@@ -1,106 +1,27 @@
+import fs from "fs"
+import path from "path"
 import Link from "next/link"
 
 export default function Home() {
+  const dir = path.join(process.cwd(), "content/episodes")
+  const files = fs.readdirSync(dir).slice(0, 5)
+
   return (
-    <main style={container}>
+    <main style={{ padding: "60px 40px" }}>
+      <h1 style={{ color: "#d4af37" }}>Featured Articles</h1>
 
-      {/* Hero */}
-      <section style={hero}>
-        <h1 style={heroTitle}>
-          Uncovering the Stories History Tried to Bury
-        </h1>
-        <p style={heroText}>
-          Dark historical documentaries and untold narratives beyond the surface.
-        </p>
-        <Link href="/videos" style={heroBtn}>
-          Explore Videos
-        </Link>
-      </section>
-
-      {/* About Preview */}
-      <section style={section}>
-        <h2 style={sectionTitle}>What is Hidden Narratives?</h2>
-        <p style={sectionText}>
-          Hidden Narratives explores controversial, mysterious, and forgotten
-          historical events through cinematic storytelling and deep research.
-          Our goal is to uncover truths that remain in the shadows.
-        </p>
-      </section>
-
-      {/* CTA */}
-      <section style={cta}>
-        <h2>Support the Project</h2>
-        <p>Explore our tools and resources used to build this platform.</p>
-        <Link href="/tools" style={ctaBtn}>
-          View Resources
-        </Link>
-      </section>
-
+      <ul>
+        {files.map(file => {
+          const slug = file.replace(".md", "")
+          return (
+            <li key={slug}>
+              <Link href={`/episodes/${slug}`} style={{ color: "#ccc" }}>
+                {slug.replace(/-/g, " ")}
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
     </main>
   )
-}
-
-const container = {
-  background: "#0d0d0d",
-  color: "white",
-  minHeight: "100vh"
-}
-
-const hero = {
-  padding: "100px 40px",
-  textAlign: "center" as const
-}
-
-const heroTitle = {
-  fontSize: "40px",
-  color: "#b08d57",
-  marginBottom: "20px"
-}
-
-const heroText = {
-  fontSize: "18px",
-  color: "#aaa",
-  marginBottom: "30px"
-}
-
-const heroBtn = {
-  padding: "10px 20px",
-  background: "#b08d57",
-  color: "#000",
-  borderRadius: "6px",
-  textDecoration: "none",
-  fontWeight: "bold"
-}
-
-const section = {
-  padding: "60px 40px",
-  maxWidth: "900px",
-  margin: "0 auto"
-}
-
-const sectionTitle = {
-  color: "#b08d57",
-  marginBottom: "20px"
-}
-
-const sectionText = {
-  lineHeight: "1.8",
-  color: "#ccc"
-}
-
-const cta = {
-  padding: "60px 40px",
-  textAlign: "center" as const,
-  borderTop: "1px solid #222"
-}
-
-const ctaBtn = {
-  display: "inline-block",
-  marginTop: "20px",
-  padding: "10px 20px",
-  background: "#b08d57",
-  color: "#000",
-  borderRadius: "6px",
-  textDecoration: "none",
-  fontWeight: "bold"
 }
