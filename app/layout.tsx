@@ -1,6 +1,7 @@
 import "./globals.css"
 import type { Metadata } from "next"
 import Link from "next/link"
+import React from "react"
 
 export const metadata: Metadata = {
   title: "Hidden Narratives",
@@ -44,7 +45,6 @@ export default function RootLayout({
             <Link href="/about" style={navLink}>About</Link>
             <Link href="/contact" style={navLink}>Contact</Link>
 
-            {/* YouTube Button */}
             <a
               href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
               target="_blank"
@@ -54,7 +54,6 @@ export default function RootLayout({
               ▶ YouTube
             </a>
 
-            {/* LinkedIn Button */}
             <a
               href="https://www.linkedin.com/in/muhammed-alaa-0169b3385"
               target="_blank"
@@ -76,10 +75,21 @@ export default function RootLayout({
           </div>
 
           <div style={{ marginBottom: "15px" }}>
-            <a href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow" target="_blank" style={footerSocial}>
+            <a
+              href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={footerSocial}
+            >
               YouTube
             </a>
-            <a href="https://www.linkedin.com/in/muhammed-alaa-0169b3385" target="_blank" style={footerSocial}>
+
+            <a
+              href="https://www.linkedin.com/in/muhammed-alaa-0169b3385"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={footerSocial}
+            >
               LinkedIn
             </a>
           </div>
@@ -93,14 +103,14 @@ export default function RootLayout({
 
 /* ================= STYLES ================= */
 
-const bodyStyle = {
+const bodyStyle: React.CSSProperties = {
   margin: 0,
   background: "#0d0d0d",
   color: "white",
   fontFamily: "Arial, sans-serif"
 }
 
-const headerStyle = {
+const headerStyle: React.CSSProperties = {
   padding: "20px 40px",
   display: "flex",
   justifyContent: "space-between",
@@ -109,48 +119,46 @@ const headerStyle = {
   flexWrap: "wrap"
 }
 
-const logoStyle = {
+const logoStyle: React.CSSProperties = {
   margin: 0,
   color: "#b08d57",
   letterSpacing: "1px"
 }
 
-const navStyle = {
+const navStyle: React.CSSProperties = {
   display: "flex",
   gap: "18px",
   alignItems: "center",
   flexWrap: "wrap"
 }
 
-const navLink = {
+const navLink: React.CSSProperties = {
   color: "white",
   textDecoration: "none",
   fontWeight: "500"
 }
 
-const youtubeBtn = {
+const youtubeBtn: React.CSSProperties = {
   padding: "8px 16px",
   background: "#b08d57",
   color: "#000",
   borderRadius: "25px",
   textDecoration: "none",
   fontWeight: "bold",
-  boxShadow: "0 0 12px rgba(176,141,87,0.6)",
-  transition: "0.3s"
+  boxShadow: "0 0 12px rgba(176,141,87,0.6)"
 }
 
-const linkedinBtn = {
+const linkedinBtn: React.CSSProperties = {
   padding: "8px 16px",
   background: "#0A66C2",
   color: "#fff",
   borderRadius: "25px",
   textDecoration: "none",
   fontWeight: "bold",
-  boxShadow: "0 0 12px rgba(10,102,194,0.6)",
-  transition: "0.3s"
+  boxShadow: "0 0 12px rgba(10,102,194,0.6)"
 }
 
-const footerStyle = {
+const footerStyle: React.CSSProperties = {
   padding: "40px",
   textAlign: "center",
   borderTop: "1px solid #222",
@@ -158,15 +166,15 @@ const footerStyle = {
   color: "#777"
 }
 
-const footerLink = {
+const footerLink: React.CSSProperties = {
   color: "#b08d57",
   textDecoration: "none",
   margin: "0 8px"
 }
 
-const footerSocial = {
+const footerSocial: React.CSSProperties = {
   margin: "0 10px",
   color: "#b08d57",
   textDecoration: "none",
   fontWeight: "bold"
-    }
+  }
