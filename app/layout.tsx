@@ -1,11 +1,10 @@
 import "./globals.css"
 import type { Metadata } from "next"
 import Link from "next/link"
-import React from "react"
 
 export const metadata: Metadata = {
   title: "Hidden Narratives",
-  description: "Dark historical documentaries and mysterious stories.",
+  description: "Dark historical documentaries and mysterious stories."
 }
 
 export default function RootLayout({
@@ -64,8 +63,6 @@ export default function RootLayout({
     </html>
   )
 }
-
-/* ===== STYLES ===== */
 
 const bodyStyle: React.CSSProperties = {
   margin: 0,
@@ -128,6 +125,3 @@ const footerLink: React.CSSProperties = {
   textDecoration: "none",
   margin: "0 8px",
 }
-
-/* Force file to be treated as module */
-export {}
