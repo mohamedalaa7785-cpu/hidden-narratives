@@ -5,7 +5,7 @@ import React from "react"
 
 export const metadata: Metadata = {
   title: "Hidden Narratives",
-  description: "Dark historical documentaries and mysterious stories."
+  description: "Dark historical documentaries and mysterious stories.",
 }
 
 export default function RootLayout({
@@ -16,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={bodyStyle}>
-
         <header style={headerStyle}>
           <h2 style={logoStyle}>Hidden Narratives</h2>
 
@@ -27,7 +26,6 @@ export default function RootLayout({
             <Link href="/tools" style={navLink}>Tools</Link>
             <Link href="/about" style={navLink}>About</Link>
             <Link href="/contact" style={navLink}>Contact</Link>
-            <Link href="/search" style={navLink}>Search</Link>
 
             <a
               href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
@@ -52,7 +50,7 @@ export default function RootLayout({
         {children}
 
         <footer style={footerStyle}>
-          <div style={{ marginBottom: "10px" }}>
+          <div>
             <Link href="/privacy" style={footerLink}>Privacy</Link> |
             <Link href="/terms" style={footerLink}> Terms</Link> |
             <Link href="/disclaimer" style={footerLink}> Disclaimer</Link>
@@ -62,7 +60,6 @@ export default function RootLayout({
             © {new Date().getFullYear()} Hidden Narratives
           </p>
         </footer>
-
       </body>
     </html>
   )
@@ -74,7 +71,7 @@ const bodyStyle: React.CSSProperties = {
   margin: 0,
   background: "#0d0d0d",
   color: "white",
-  fontFamily: "Arial, sans-serif"
+  fontFamily: "Arial, sans-serif",
 }
 
 const headerStyle: React.CSSProperties = {
@@ -83,43 +80,39 @@ const headerStyle: React.CSSProperties = {
   justifyContent: "space-between",
   alignItems: "center",
   borderBottom: "1px solid #222",
-  flexWrap: "wrap"
 }
 
 const logoStyle: React.CSSProperties = {
   margin: 0,
-  color: "#b08d57"
+  color: "#b08d57",
 }
 
 const navStyle: React.CSSProperties = {
   display: "flex",
-  gap: "18px",
-  alignItems: "center",
-  flexWrap: "wrap"
+  gap: "20px",
 }
 
 const navLink: React.CSSProperties = {
   color: "white",
   textDecoration: "none",
-  fontWeight: "500"
 }
 
 const youtubeBtn: React.CSSProperties = {
-  padding: "8px 16px",
+  padding: "6px 14px",
   background: "#b08d57",
   color: "#000",
-  borderRadius: "25px",
+  borderRadius: "20px",
   textDecoration: "none",
-  fontWeight: "bold"
+  fontWeight: "bold",
 }
 
 const linkedinBtn: React.CSSProperties = {
-  padding: "8px 16px",
+  padding: "6px 14px",
   background: "#0A66C2",
   color: "#fff",
-  borderRadius: "25px",
+  borderRadius: "20px",
   textDecoration: "none",
-  fontWeight: "bold"
+  fontWeight: "bold",
 }
 
 const footerStyle: React.CSSProperties = {
@@ -127,11 +120,14 @@ const footerStyle: React.CSSProperties = {
   textAlign: "center",
   borderTop: "1px solid #222",
   marginTop: "60px",
-  color: "#777"
+  color: "#777",
 }
 
 const footerLink: React.CSSProperties = {
   color: "#b08d57",
   textDecoration: "none",
-  margin: "0 8px"
+  margin: "0 8px",
 }
+
+/* Force file to be treated as module */
+export {}
