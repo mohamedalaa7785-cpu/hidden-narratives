@@ -16,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={bodyStyle}>
+
         <header style={headerStyle}>
           <h2 style={logoStyle}>Hidden Narratives</h2>
 
@@ -26,6 +27,7 @@ export default function RootLayout({
             <Link href="/tools" style={navLink}>Tools</Link>
             <Link href="/about" style={navLink}>About</Link>
             <Link href="/contact" style={navLink}>Contact</Link>
+            <Link href="/search" style={navLink}>Search</Link>
 
             <a
               href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
@@ -50,7 +52,7 @@ export default function RootLayout({
         {children}
 
         <footer style={footerStyle}>
-          <div>
+          <div style={{ marginBottom: "10px" }}>
             <Link href="/privacy" style={footerLink}>Privacy</Link> |
             <Link href="/terms" style={footerLink}> Terms</Link> |
             <Link href="/disclaimer" style={footerLink}> Disclaimer</Link>
@@ -60,12 +62,13 @@ export default function RootLayout({
             © {new Date().getFullYear()} Hidden Narratives
           </p>
         </footer>
+
       </body>
     </html>
   )
 }
 
-/* STYLES */
+/* ===== STYLES ===== */
 
 const bodyStyle: React.CSSProperties = {
   margin: 0,
@@ -79,7 +82,8 @@ const headerStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  borderBottom: "1px solid #222"
+  borderBottom: "1px solid #222",
+  flexWrap: "wrap"
 }
 
 const logoStyle: React.CSSProperties = {
@@ -89,28 +93,31 @@ const logoStyle: React.CSSProperties = {
 
 const navStyle: React.CSSProperties = {
   display: "flex",
-  gap: "20px"
+  gap: "18px",
+  alignItems: "center",
+  flexWrap: "wrap"
 }
 
 const navLink: React.CSSProperties = {
   color: "white",
-  textDecoration: "none"
+  textDecoration: "none",
+  fontWeight: "500"
 }
 
 const youtubeBtn: React.CSSProperties = {
-  padding: "6px 14px",
+  padding: "8px 16px",
   background: "#b08d57",
   color: "#000",
-  borderRadius: "20px",
+  borderRadius: "25px",
   textDecoration: "none",
   fontWeight: "bold"
 }
 
 const linkedinBtn: React.CSSProperties = {
-  padding: "6px 14px",
+  padding: "8px 16px",
   background: "#0A66C2",
   color: "#fff",
-  borderRadius: "20px",
+  borderRadius: "25px",
   textDecoration: "none",
   fontWeight: "bold"
 }
@@ -127,4 +134,4 @@ const footerLink: React.CSSProperties = {
   color: "#b08d57",
   textDecoration: "none",
   margin: "0 8px"
-      }
+}
