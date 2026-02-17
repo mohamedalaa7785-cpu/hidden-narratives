@@ -3,9 +3,13 @@ import path from "path"
 import matter from "gray-matter"
 import Link from "next/link"
 
-const POSTS_PER_PAGE = 6
+type Article = {
+  slug: string
+  title: string
+  description: string
+}
 
-function getArticles() {
+function getArticles(): Article[] {
   const dir = path.join(process.cwd(), "content/episodes")
   const files = fs.readdirSync(dir)
 
@@ -17,23 +21,14 @@ function getArticles() {
 
     return {
       slug,
-      ...data,
+      title: data.title || "Untitled",
+      description: data.description || "",
     }
   })
 }
 
-export default function EpisodesPage({
-  searchParams,
-}: {
-  searchParams: { page?: string }
-}) {
+export default function EpisodesPage() {
   const articles = getArticles()
-  const page = parseInt(searchParams.page || "1")
-  const start = (page - 1) * POSTS_PER_PAGE
-  const end = start + POSTS_PER_PAGE
-  const totalPages = Math.ceil(articles.length / POSTS_PER_PAGE)
-
-  const paginated = articles.slice(start, end)
 
   return (
     <main style={{ padding: "60px 40px" }}>
@@ -42,7 +37,7 @@ export default function EpisodesPage({
       </h1>
 
       <div style={grid}>
-        {paginated.map((article) => (
+        {articles.map((article) => (
           <Link
             key={article.slug}
             href={`/episodes/${article.slug}`}
@@ -50,26 +45,6 @@ export default function EpisodesPage({
           >
             <h3>{article.title}</h3>
             <p>{article.description}</p>
-          </Link>
-        ))}
-      </div>
-
-      {/* Pagination */}
-      <div style={{ marginTop: "60px", textAlign: "center" }}>
-        {Array.from({ length: totalPages }, (_, i) => (
-          <Link
-            key={i}
-            href={`/episodes?page=${i + 1}`}
-            style={{
-              margin: "0 8px",
-              padding: "8px 14px",
-              background: page === i + 1 ? "#b08d57" : "#141414",
-              color: page === i + 1 ? "#000" : "#fff",
-              borderRadius: "6px",
-              textDecoration: "none"
-            }}
-          >
-            {i + 1}
           </Link>
         ))}
       </div>
