@@ -15,7 +15,8 @@ function getArticles() {
 
     return {
       slug,
-      ...data,
+      title: data.title,
+      description: data.description,
     }
   })
 }
@@ -39,6 +40,7 @@ export default function Home() {
         <a
           href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
           target="_blank"
+          rel="noopener noreferrer"
           style={ctaBtn}
         >
           Watch on YouTube
