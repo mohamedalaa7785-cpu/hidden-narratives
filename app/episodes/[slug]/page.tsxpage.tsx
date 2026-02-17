@@ -21,6 +21,29 @@ function getArticles() {
   })
 }
 
+export async function generateMetadata({ params }: any) {
+  const filePath = path.join(
+    process.cwd(),
+    "content/episodes",
+    `${params.slug}.md`
+  )
+
+  const file = fs.readFileSync(filePath, "utf8")
+  const { data } = matter(file)
+
+  return {
+    title: data.title,
+    description: data.description,
+    keywords: data.keywords,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      type: "article",
+      url: `https://mohamedalaa7785-cpu-hidden-narratives-qobpb4e5w-hamo-projects.vercel.app/episodes/${params.slug}`
+    }
+  }
+}
+
 export default function Episode({ params }: any) {
   const filePath = path.join(
     process.cwd(),
@@ -39,7 +62,6 @@ export default function Episode({ params }: any) {
 
   return (
     <main style={{ padding: "60px 40px" }}>
-      
       <article style={{ maxWidth: "800px", margin: "0 auto" }}>
         <h1 style={{ color: "#b08d57" }}>{data.title}</h1>
         <p style={{ color: "#888", marginBottom: "40px" }}>
@@ -52,7 +74,6 @@ export default function Episode({ params }: any) {
         />
       </article>
 
-      {/* Related Articles */}
       <section style={{ marginTop: "100px" }}>
         <h2 style={{ color: "#b08d57", marginBottom: "30px" }}>
           Related Articles
@@ -71,7 +92,6 @@ export default function Episode({ params }: any) {
           ))}
         </div>
       </section>
-
     </main>
   )
 }
@@ -89,4 +109,4 @@ const card = {
   textDecoration: "none",
   color: "white",
   border: "1px solid #222"
-    }
+          }
