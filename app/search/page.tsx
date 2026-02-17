@@ -37,24 +37,6 @@ export default function SearchPage({
     <main style={{ padding: "60px 40px" }}>
       <h1 style={{ color: "#b08d57" }}>Search Articles</h1>
 
-      <form style={{ marginTop: "20px" }}>
-        <input
-          type="text"
-          name="q"
-          placeholder="Search by title..."
-          defaultValue={query}
-          style={{
-            padding: "12px",
-            width: "100%",
-            maxWidth: "500px",
-            background: "#111",
-            border: "1px solid #333",
-            color: "white",
-            borderRadius: "8px"
-          }}
-        />
-      </form>
-
       <div style={{ marginTop: "40px" }}>
         {results.map((article) => (
           <Link
@@ -77,4 +59,4 @@ export default function SearchPage({
       </div>
     </main>
   )
-      }
+}
