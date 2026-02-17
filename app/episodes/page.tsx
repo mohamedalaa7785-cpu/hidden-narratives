@@ -55,7 +55,7 @@ export default function EpisodesPage() {
 const grid = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-  gap: "25px",
+  gap: "25px"
 }
 
 const card = {
@@ -64,5 +64,5 @@ const card = {
   borderRadius: "12px",
   textDecoration: "none",
   color: "white",
-  border: "1px solid #222",
+  border: "1px solid #222"
 }
