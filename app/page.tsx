@@ -33,7 +33,7 @@ export default function Home() {
   const featured = articles[0]
 
   return (
-    <main style={{ padding: "60px 40px" }}>
+    <main style={{ padding: "0 40px" }}>
       
       {/* HERO */}
       <section className="hero">
@@ -45,7 +45,7 @@ export default function Home() {
 
       {/* FEATURED */}
       {featured && (
-        <section style={{ marginTop: "80px" }}>
+        <section style={{ marginTop: "100px" }}>
           <h2 style={{ color: "#b08d57", marginBottom: "30px" }}>
             Featured Analysis
           </h2>
@@ -61,7 +61,7 @@ export default function Home() {
       )}
 
       {/* LATEST */}
-      <section style={{ marginTop: "80px" }}>
+      <section style={{ marginTop: "100px", marginBottom: "80px" }}>
         <h2 style={{ color: "#b08d57", marginBottom: "30px" }}>
           Latest Articles
         </h2>
@@ -88,4 +88,4 @@ export default function Home() {
 
     </main>
   )
-    }
+}
