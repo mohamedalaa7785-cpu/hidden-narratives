@@ -1,33 +1,18 @@
-"use client"
-import { useState } from "react"
-
-export default function Contact() {
-  const [status, setStatus] = useState("")
-
-  async function handleSubmit(e: any) {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      body: formData
-    })
-
-    if (res.ok) setStatus("Message sent.")
-    else setStatus("Error.")
-  }
-
+export default function ContactPage() {
   return (
-    <main className="section">
-      <h1>Contact</h1>
+    <section className="contact-section">
+      <div className="contact-overlay" />
+      <div className="contact-box">
+        <h1>Contact Hidden Narratives</h1>
+        <p>Collaborations, research inquiries, or media partnerships.</p>
 
-      <form onSubmit={handleSubmit}>
-        <input name="email" placeholder="Your Email" required />
-        <textarea name="message" placeholder="Message" required />
-        <button type="submit">Send</button>
-      </form>
-
-      <p>{status}</p>
-    </main>
+        <form className="contact-form">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" rows={6} required />
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
   )
 }
