@@ -1,220 +1,38 @@
-/* ===============================
-   RESET
-================================= */
+import "./globals.css"
+import type { Metadata } from "next"
+import Link from "next/link"
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+export const metadata: Metadata = {
+  title: "Hidden Narratives",
+  description: "Deep historical analysis. Power structures. Lost civilizations."
 }
 
-html, body {
-  scroll-behavior: smooth;
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <header className="glassHeader">
+          <div className="logo">Hidden Narratives</div>
+
+          <nav>
+            <Link href="/">Home</Link>
+            <Link href="/episodes">Episodes</Link>
+            <Link href="/videos">Videos</Link>
+            <Link href="/tools">Tools</Link>
+            <Link href="/search">Search</Link>
+          </nav>
+        </header>
+
+        {children}
+
+        <footer className="footer">
+          © {new Date().getFullYear()} Hidden Narratives
+        </footer>
+      </body>
+    </html>
+  )
 }
-
-body {
-  background: #0b0b0f;
-  color: #e5e5e5;
-  font-family: "Inter", Arial, sans-serif;
-  line-height: 1.7;
-}
-
-/* ===============================
-   GLOBAL CONTAINER
-================================= */
-
-main {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* ===============================
-   HERO SECTION
-================================= */
-
-.hero {
-  text-align: center;
-  padding: 160px 20px;
-  background: radial-gradient(circle at center, #111 0%, #0b0b0f 70%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero h1 {
-  font-size: 64px;
-  letter-spacing: 2px;
-  color: #b08d57;
-  margin-bottom: 20px;
-  animation: glow 3s ease-in-out infinite alternate;
-}
-
-.hero p {
-  font-size: 20px;
-  color: #aaa;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-/* Gold glow animation */
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px rgba(176,141,87,0.3);
-  }
-  to {
-    text-shadow: 0 0 25px rgba(176,141,87,0.7);
-  }
-}
-
-/* ===============================
-   CARDS
-================================= */
-
-.card,
-.cinemaCard {
-  display: block;
-  background: linear-gradient(145deg, #111, #161616);
-  padding: 28px;
-  border-radius: 16px;
-  border: 1px solid #1e1e1e;
-  text-decoration: none;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.card:hover,
-.cinemaCard:hover {
-  border-color: #b08d57;
-  transform: translateY(-6px);
-  box-shadow: 0 10px 40px rgba(176,141,87,0.15);
-}
-
-.card h3,
-.card h4,
-.cinemaCard h3,
-.cinemaCard h4 {
-  color: #b08d57;
-  margin-bottom: 10px;
-}
-
-.card p,
-.cinemaCard p {
-  color: #bbb;
-  font-size: 15px;
-}
-
-/* ===============================
-   GRID
-================================= */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 35px;
-}
-
-/* ===============================
-   ARTICLE CONTENT
-================================= */
-
-.articleContent {
-  max-width: 800px;
-  margin: 60px auto;
-  font-size: 18px;
-  line-height: 1.9;
-  color: #ddd;
-}
-
-.articleContent h1,
-.articleContent h2,
-.articleContent h3 {
-  color: #b08d57;
-  margin-top: 60px;
-  margin-bottom: 20px;
-}
-
-.articleContent p {
-  margin-bottom: 25px;
-}
-
-.articleContent ul {
-  margin: 20px 0 30px 20px;
-}
-
-.articleContent li {
-  margin-bottom: 10px;
-}
-
-.articleContent blockquote {
-  border-left: 3px solid #b08d57;
-  padding-left: 20px;
-  margin: 30px 0;
-  color: #aaa;
-  font-style: italic;
-}
-
-.articleContent a {
-  color: #b08d57;
-  text-decoration: underline;
-}
-
-/* ===============================
-   HEADER & NAV
-================================= */
-
-header {
-  backdrop-filter: blur(8px);
-  background: rgba(10, 10, 15, 0.7);
-}
-
-nav a {
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #b08d57;
-}
-
-/* ===============================
-   FOOTER
-================================= */
-
-footer {
-  background: #0e0e12;
-  padding: 60px 20px;
-}
-
-/* ===============================
-   SCROLLBAR
-================================= */
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #111;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #b08d57;
-  border-radius: 5px;
-}
-
-/* ===============================
-   RESPONSIVE
-================================= */
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 42px;
-  }
-
-  .hero {
-    padding: 120px 20px;
-  }
-
-  .articleContent {
-    font-size: 16px;
-  }
-  }
