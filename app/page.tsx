@@ -33,51 +33,43 @@ export default function Home() {
   const featured = articles[0]
 
   return (
-    <main style={{ padding: "0 40px" }}>
-      
-      {/* HERO */}
-      <section className="hero">
-        <h1>Hidden Narratives</h1>
-        <p>
-          Deep historical analysis. Power structures. Lost civilizations.
-        </p>
+    <main>
+
+      {/* HERO CINEMATIC */}
+      <section className="heroPro">
+        <div className="heroOverlay">
+          <h1>Hidden Narratives</h1>
+          <p>Deep historical analysis. Power structures. Lost civilizations.</p>
+        </div>
       </section>
 
-      {/* FEATURED */}
+      {/* FEATURED LARGE */}
       {featured && (
-        <section style={{ marginTop: "100px" }}>
-          <h2 style={{ color: "#b08d57", marginBottom: "30px" }}>
-            Featured Analysis
-          </h2>
+        <section className="featuredSection">
+          <h2 className="sectionTitle">Featured Analysis</h2>
 
           <Link
             href={`/episodes/${featured.slug}`}
-            className="card"
+            className="featuredCard"
           >
-            <h3>{featured.title}</h3>
-            <p>{featured.description}</p>
+            <div>
+              <h3>{featured.title}</h3>
+              <p>{featured.description}</p>
+            </div>
           </Link>
         </section>
       )}
 
-      {/* LATEST */}
-      <section style={{ marginTop: "100px", marginBottom: "80px" }}>
-        <h2 style={{ color: "#b08d57", marginBottom: "30px" }}>
-          Latest Articles
-        </h2>
+      {/* LATEST GRID */}
+      <section className="latestSection">
+        <h2 className="sectionTitle">Latest Articles</h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: "25px"
-          }}
-        >
+        <div className="gridPro">
           {latest.map((article) => (
             <Link
               key={article.slug}
               href={`/episodes/${article.slug}`}
-              className="card"
+              className="cardPro"
             >
               <h4>{article.title}</h4>
               <p>{article.description}</p>
@@ -88,4 +80,4 @@ export default function Home() {
 
     </main>
   )
-}
+      }
