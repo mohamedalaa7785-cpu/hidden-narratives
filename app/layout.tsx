@@ -1,6 +1,7 @@
 import "./globals.css"
 import type { Metadata } from "next"
 import Link from "next/link"
+import { useState } from "react"
 
 export const metadata: Metadata = {
   title: "Hidden Narratives",
@@ -16,51 +17,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header>
+        <header className="navbar">
           <div className="nav-container">
             <h2 className="logo">Hidden Narratives</h2>
 
-            <nav>
+            <nav className="nav-links">
               <Link href="/">Home</Link>
               <Link href="/episodes">Episodes</Link>
               <Link href="/videos">Videos</Link>
-              <Link href="/tools">Tools</Link>
               <Link href="/about">About</Link>
               <Link href="/contact">Contact</Link>
-
-              <a
-                href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                YouTube
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/muhammed-alaa-0169b3385"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
             </nav>
           </div>
         </header>
 
-        <main className="main-content">
-          {children}
-        </main>
+        <main className="main-content">{children}</main>
 
-        <footer>
-          <div className="footer-links">
-            <Link href="/privacy">Privacy</Link>
-            <Link href="/terms">Terms</Link>
-            <Link href="/disclaimer">Disclaimer</Link>
-          </div>
-
+        <footer className="footer">
           <p>© {new Date().getFullYear()} Hidden Narratives</p>
         </footer>
       </body>
     </html>
   )
-                }
+}
