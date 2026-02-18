@@ -2,9 +2,10 @@
 
 body {
   margin: 0;
-  background: #0d0d0d;
+  background: radial-gradient(circle at top, #111 0%, #0d0d0d 60%);
   color: #e6e6e6;
   font-family: "Inter", Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -25,8 +26,11 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #1f1f1f;
-  background: rgba(10,10,10,0.9);
+  background: rgba(10,10,10,0.8);
   backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
@@ -62,11 +66,31 @@ a:hover {
 /* ===== FOOTER ===== */
 
 .footer {
-  margin-top: 80px;
+  margin-top: 100px;
   padding: 40px;
   text-align: center;
   border-top: 1px solid #1f1f1f;
   color: #777;
+}
+
+/* ===== HERO ===== */
+
+.hero {
+  text-align: center;
+  padding: 160px 20px;
+  background: linear-gradient(to bottom, #0d0d0d, #141414);
+  animation: fadeUp 1.2s ease forwards;
+}
+
+.hero h1 {
+  font-size: 54px;
+  color: #b08d57;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: #aaa;
+  font-size: 18px;
 }
 
 /* ===== CARDS ===== */
@@ -76,30 +100,26 @@ a:hover {
   padding: 25px;
   border-radius: 12px;
   border: 1px solid #1f1f1f;
-  transition: 0.3s ease;
+  transition: 0.4s ease;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   border-color: #b08d57;
-  box-shadow: 0 10px 30px rgba(176,141,87,0.15);
+  box-shadow: 0 15px 40px rgba(176,141,87,0.15);
 }
 
-/* ===== HERO ===== */
+/* ===== ANIMATION ===== */
 
-.hero {
-  text-align: center;
-  padding: 140px 20px;
-  background: linear-gradient(to bottom, #0d0d0d, #111);
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
-.hero h1 {
-  font-size: 48px;
-  color: #b08d57;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  color: #aaa;
-  margin-bottom: 30px;
-                               }
