@@ -1,35 +1,18 @@
-export default function About() {
+export default function AboutPage() {
   return (
-    <main style={container}>
-      <h1>About Hidden Narratives</h1>
-
-      <p>
-        Hidden Narratives is an independent digital media project dedicated to
-        uncovering the hidden, controversial, and forgotten chapters of history.
-      </p>
-
-      <p>
-        Through cinematic storytelling, research-based scripts, and AI-assisted
-        production, the platform presents alternative perspectives and deep
-        historical analysis.
-      </p>
-
-      <p>
-        Our mission is to challenge surface-level narratives and encourage
-        critical thinking through powerful storytelling.
-      </p>
-
-      <p>
-        Founder: Mohamed Alaa
-      </p>
-    </main>
+    <section className="about-full">
+      <div className="about-full-image" />
+      <div className="about-full-text">
+        <h1>About Hidden Narratives</h1>
+        <p>
+          Hidden Narratives explores deep power structures, intelligence
+          systems, and long-term political patterns shaping civilizations.
+        </p>
+        <p>
+          Founded by Mohamed Alaa, the platform combines cinematic storytelling
+          with research-based scripts and AI-assisted production.
+        </p>
+      </div>
+    </section>
   )
-}
-
-const container = {
-  padding: "60px 40px",
-  background: "#0d0d0d",
-  minHeight: "100vh",
-  color: "white",
-  lineHeight: "1.8"
 }
