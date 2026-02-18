@@ -35,22 +35,28 @@ export default function Home() {
   return (
     <main>
 
-      {/* HERO CINEMATIC */}
-      <section className="heroPro">
-        <div className="heroOverlay">
-          <h1>Hidden Narratives</h1>
-          <p>Deep historical analysis. Power structures. Lost civilizations.</p>
+      {/* PARALLAX HERO */}
+      <section className="cinemaHero">
+        <div className="cinemaOverlay">
+          <h1 className="cinemaTitle">
+            Hidden Narratives
+          </h1>
+          <p className="cinemaSub">
+            Deep historical analysis. Power structures. Lost civilizations.
+          </p>
         </div>
       </section>
 
-      {/* FEATURED LARGE */}
+      {/* FEATURED CINEMATIC */}
       {featured && (
-        <section className="featuredSection">
-          <h2 className="sectionTitle">Featured Analysis</h2>
+        <section className="cinemaFeatured">
+          <h2 className="cinemaSectionTitle">
+            Featured Investigation
+          </h2>
 
           <Link
             href={`/episodes/${featured.slug}`}
-            className="featuredCard"
+            className="cinemaFeaturedCard"
           >
             <div>
               <h3>{featured.title}</h3>
@@ -60,16 +66,18 @@ export default function Home() {
         </section>
       )}
 
-      {/* LATEST GRID */}
-      <section className="latestSection">
-        <h2 className="sectionTitle">Latest Articles</h2>
+      {/* GRID PLATFORM */}
+      <section className="cinemaGridSection">
+        <h2 className="cinemaSectionTitle">
+          Latest Investigations
+        </h2>
 
-        <div className="gridPro">
+        <div className="cinemaGrid">
           {latest.map((article) => (
             <Link
               key={article.slug}
               href={`/episodes/${article.slug}`}
-              className="cardPro"
+              className="cinemaCard"
             >
               <h4>{article.title}</h4>
               <p>{article.description}</p>
@@ -80,4 +88,4 @@ export default function Home() {
 
     </main>
   )
-      }
+}
