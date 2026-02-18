@@ -1,172 +1,79 @@
-/* RESET */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-body {
-  background: #08080b;
-  color: #e5e5e5;
-  font-family: "Inter", sans-serif;
-  overflow-x: hidden;
+html, body {
+  background: #0d0d0d;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
-/* GLASS HEADER */
-.glassHeader {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
   position: fixed;
   top: 0;
   width: 100%;
-  backdrop-filter: blur(14px);
-  background: rgba(10,10,15,0.6);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 20px 40px;
   z-index: 1000;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid #222;
 }
 
-.glassHeader nav a {
-  margin-left: 30px;
-  text-decoration: none;
-  color: #aaa;
+nav {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  font-weight: 500;
   transition: 0.3s ease;
 }
 
-.glassHeader nav a:hover {
+nav a:hover {
   color: #b08d57;
 }
 
-.logo {
-  font-size: 20px;
-  letter-spacing: 2px;
-  color: #b08d57;
-}
-
-/* HERO CINEMATIC */
-.heroCinematic {
+.hero {
   height: 100vh;
-  background: url("https://images.unsplash.com/photo-1533055640609-24b498dfd74c?q=80&w=2070") center/cover no-repeat;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  position: relative;
+  padding: 0 40px;
+  background-size: cover;
+  background-position: center;
 }
 
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.7), #08080b);
-}
-
-.heroContent {
-  position: relative;
-  text-align: center;
-  max-width: 800px;
-  animation: fadeUp 1.2s ease forwards;
-}
-
-.heroTitle {
-  font-size: 72px;
+.hero h1 {
+  font-size: 64px;
   color: #b08d57;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-  animation: glow 3s infinite alternate ease-in-out;
 }
 
-.heroTitle span {
-  color: white;
-}
-
-.heroSubtitle {
+.hero p {
+  margin-top: 20px;
   font-size: 20px;
-  color: #bbb;
-  margin-bottom: 40px;
+  color: #aaa;
 }
 
-.heroButton {
-  padding: 14px 36px;
-  background: linear-gradient(90deg, #b08d57, #d4af37);
-  border-radius: 40px;
-  text-decoration: none;
-  color: #000;
+.button-gold {
+  margin-top: 40px;
+  padding: 14px 30px;
+  background: #b08d57;
+  color: black;
+  border-radius: 30px;
   font-weight: bold;
-  transition: 0.4s ease;
+  display: inline-block;
+  transition: 0.3s ease;
 }
 
-.heroButton:hover {
+.button-gold:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(176,141,87,0.5);
 }
-
-/* PLATFORM SECTION */
-.platformSection {
-  padding: 120px 80px;
-}
-
-.sectionTitle {
-  font-size: 36px;
-  color: #b08d57;
-  margin-bottom: 60px;
-  text-align: center;
-}
-
-.cinemaGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 40px;
-}
-
-.cinemaCard {
-  position: relative;
-  padding: 40px;
-  background: linear-gradient(145deg, #111, #161616);
-  border-radius: 20px;
-  text-decoration: none;
-  color: white;
-  border: 1px solid rgba(255,255,255,0.05);
-  transition: 0.4s ease;
-  overflow: hidden;
-}
-
-.cinemaCard:hover {
-  transform: translateY(-10px);
-  border-color: #b08d57;
-}
-
-.cardGlow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top left, rgba(176,141,87,0.15), transparent 60%);
-  opacity: 0;
-  transition: 0.4s;
-}
-
-.cinemaCard:hover .cardGlow {
-  opacity: 1;
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 60px;
-  color: #777;
-}
-
-/* ANIMATIONS */
-@keyframes glow {
-  from { text-shadow: 0 0 10px rgba(176,141,87,0.3); }
-  to { text-shadow: 0 0 30px rgba(176,141,87,0.8); }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  }
