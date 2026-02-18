@@ -1,135 +1,220 @@
-/* ===== GLOBAL BASE ===== */
+/* ===============================
+   RESET
+================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
 
 body {
-  margin: 0;
-  background: #0a0a0a;
-  color: #e6e6e6;
+  background: #0b0b0f;
+  color: #e5e5e5;
   font-family: "Inter", Arial, sans-serif;
-  overflow-x: hidden;
+  line-height: 1.7;
 }
 
-/* ===== PARALLAX HERO ===== */
+/* ===============================
+   GLOBAL CONTAINER
+================================= */
 
-.cinemaHero {
-  height: 100vh;
-  background-image:
-    linear-gradient(to bottom, rgba(0,0,0,0.7), #0a0a0a),
-    radial-gradient(circle at top, #1a1a1a 0%, #0a0a0a 60%);
-  background-attachment: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   HERO SECTION
+================================= */
+
+.hero {
   text-align: center;
+  padding: 160px 20px;
+  background: radial-gradient(circle at center, #111 0%, #0b0b0f 70%);
   position: relative;
+  overflow: hidden;
 }
 
-.cinemaOverlay {
-  animation: fadeInUp 1.2s ease forwards;
-}
-
-.cinemaTitle {
-  font-size: 72px;
-  color: #b08d57;
+.hero h1 {
+  font-size: 64px;
   letter-spacing: 2px;
-  text-shadow: 0 0 20px rgba(176,141,87,0.4);
-  animation: glowPulse 3s infinite ease-in-out;
-}
-
-.cinemaSub {
-  font-size: 22px;
-  color: #ccc;
-  margin-top: 20px;
-}
-
-/* ===== FEATURED ===== */
-
-.cinemaFeatured {
-  padding: 120px 60px;
-}
-
-.cinemaSectionTitle {
   color: #b08d57;
-  margin-bottom: 50px;
-  font-size: 28px;
-  letter-spacing: 1px;
+  margin-bottom: 20px;
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
-.cinemaFeaturedCard {
-  display: block;
-  padding: 60px;
-  background: linear-gradient(135deg, #141414, #1c1c1c);
-  border-radius: 18px;
-  border: 1px solid #b08d57;
-  transition: 0.5s ease;
-  position: relative;
-  overflow: hidden;
+.hero p {
+  font-size: 20px;
+  color: #aaa;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.cinemaFeaturedCard:hover {
-  transform: scale(1.02);
-  box-shadow: 0 30px 80px rgba(176,141,87,0.25);
-}
-
-/* ===== GRID ===== */
-
-.cinemaGridSection {
-  padding: 100px 60px;
-}
-
-.cinemaGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 40px;
-}
-
-.cinemaCard {
-  padding: 40px;
-  background: #121212;
-  border-radius: 16px;
-  border: 1px solid #1f1f1f;
-  transition: 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.cinemaCard::before {
-  content: "";
-  position: absolute;
-  width: 150%;
-  height: 150%;
-  top: -50%;
-  left: -50%;
-  background: radial-gradient(circle, rgba(176,141,87,0.15), transparent 60%);
-  transform: rotate(25deg);
-  opacity: 0;
-  transition: 0.6s ease;
-}
-
-.cinemaCard:hover::before {
-  opacity: 1;
-}
-
-.cinemaCard:hover {
-  transform: translateY(-12px);
-  border-color: #b08d57;
-  box-shadow: 0 20px 60px rgba(176,141,87,0.2);
-}
-
-/* ===== ANIMATIONS ===== */
-
-@keyframes fadeInUp {
+/* Gold glow animation */
+@keyframes glow {
   from {
-    opacity: 0;
-    transform: translateY(40px);
+    text-shadow: 0 0 10px rgba(176,141,87,0.3);
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    text-shadow: 0 0 25px rgba(176,141,87,0.7);
   }
 }
 
-@keyframes glowPulse {
-  0% { text-shadow: 0 0 10px rgba(176,141,87,0.3); }
-  50% { text-shadow: 0 0 30px rgba(176,141,87,0.7); }
-  100% { text-shadow: 0 0 10px rgba(176,141,87,0.3); }
+/* ===============================
+   CARDS
+================================= */
+
+.card,
+.cinemaCard {
+  display: block;
+  background: linear-gradient(145deg, #111, #161616);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #1e1e1e;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.card:hover,
+.cinemaCard:hover {
+  border-color: #b08d57;
+  transform: translateY(-6px);
+  box-shadow: 0 10px 40px rgba(176,141,87,0.15);
+}
+
+.card h3,
+.card h4,
+.cinemaCard h3,
+.cinemaCard h4 {
+  color: #b08d57;
+  margin-bottom: 10px;
+}
+
+.card p,
+.cinemaCard p {
+  color: #bbb;
+  font-size: 15px;
+}
+
+/* ===============================
+   GRID
+================================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 35px;
+}
+
+/* ===============================
+   ARTICLE CONTENT
+================================= */
+
+.articleContent {
+  max-width: 800px;
+  margin: 60px auto;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #ddd;
+}
+
+.articleContent h1,
+.articleContent h2,
+.articleContent h3 {
+  color: #b08d57;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.articleContent p {
+  margin-bottom: 25px;
+}
+
+.articleContent ul {
+  margin: 20px 0 30px 20px;
+}
+
+.articleContent li {
+  margin-bottom: 10px;
+}
+
+.articleContent blockquote {
+  border-left: 3px solid #b08d57;
+  padding-left: 20px;
+  margin: 30px 0;
+  color: #aaa;
+  font-style: italic;
+}
+
+.articleContent a {
+  color: #b08d57;
+  text-decoration: underline;
+}
+
+/* ===============================
+   HEADER & NAV
+================================= */
+
+header {
+  backdrop-filter: blur(8px);
+  background: rgba(10, 10, 15, 0.7);
+}
+
+nav a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #b08d57;
+}
+
+/* ===============================
+   FOOTER
+================================= */
+
+footer {
+  background: #0e0e12;
+  padding: 60px 20px;
+}
+
+/* ===============================
+   SCROLLBAR
+================================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b08d57;
+  border-radius: 5px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .hero {
+    padding: 120px 20px;
+  }
+
+  .articleContent {
+    font-size: 16px;
+  }
   }
