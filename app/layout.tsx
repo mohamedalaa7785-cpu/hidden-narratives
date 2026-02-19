@@ -1,9 +1,10 @@
 import "./globals.css"
 import type { Metadata } from "next"
 import Link from "next/link"
+import Script from "next/script"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://YOUR_DOMAIN.com"),
+  metadataBase: new URL("https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"),
   title: {
     default: "Hidden Narratives",
     template: "%s | Hidden Narratives"
@@ -24,7 +25,8 @@ export const metadata: Metadata = {
       "Deep historical analysis. Power structures. Lost civilizations.",
     type: "website",
     locale: "en_US",
-    siteName: "Hidden Narratives"
+    siteName: "Hidden Narratives",
+    url: "https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"
   },
   robots: {
     index: true,
@@ -39,6 +41,48 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2457467624248791"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+
+        {/* Google Analytics (GA4) */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          `}
+        </Script>
+
+        {/* Structured Data */}
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Hidden Narratives",
+            "url": "https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"
+          }
+          `}
+        </Script>
+
+      </head>
+
       <body>
 
         {/* NAVBAR */}
@@ -52,6 +96,7 @@ export default function RootLayout({
             <nav className="nav-links">
               <Link href="/">Home</Link>
               <Link href="/episodes">Episodes</Link>
+              <Link href="/videos">Videos</Link>
               <Link href="/about">About</Link>
               <Link href="/contact">Contact</Link>
 
@@ -73,6 +118,7 @@ export default function RootLayout({
                 LinkedIn
               </a>
             </nav>
+
           </div>
         </header>
 
@@ -80,6 +126,7 @@ export default function RootLayout({
           {children}
         </main>
 
+        {/* FOOTER */}
         <footer className="footer">
           <div className="footer-links">
             <Link href="/privacy">Privacy</Link>
@@ -92,4 +139,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-}
+        }
