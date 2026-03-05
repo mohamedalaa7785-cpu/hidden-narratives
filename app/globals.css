@@ -14,9 +14,21 @@ font-family:Arial, Helvetica, sans-serif;
 line-height:1.6;
 }
 
+a{
+color:#b08d57;
+text-decoration:none;
+transition:0.25s;
+}
+
+a:hover{
+color:#d4af73;
+}
+
 .main-content{
 padding-top:90px;
 min-height:100vh;
+max-width:1400px;
+margin:auto;
 }
 
 /* ================= NAVBAR ================= */
@@ -52,11 +64,7 @@ text-decoration:none;
 font-weight:bold;
 font-size:18px;
 white-space:nowrap;
-}
-
-.logo img{
-border-radius:50%;
-object-fit:cover;
+letter-spacing:1px;
 }
 
 .logo span{
@@ -75,7 +83,6 @@ align-items:center;
 
 .nav-links a{
 color:#ccc;
-text-decoration:none;
 font-size:15px;
 transition:0.3s;
 position:relative;
@@ -116,17 +123,9 @@ background:#b08d57;
 color:black;
 }
 
-.youtube:hover{
-transform:scale(1.05);
-}
-
 .facebook{
 background:#1877F2;
 color:white;
-}
-
-.facebook:hover{
-transform:scale(1.05);
 }
 
 .linkedin{
@@ -134,7 +133,7 @@ background:#0A66C2;
 color:white;
 }
 
-.linkedin:hover{
+.social-btn:hover{
 transform:scale(1.05);
 }
 
@@ -367,13 +366,21 @@ margin-bottom:20px;
 }
 
 .footer-links a{
-margin:0 10px;
+margin:0 12px;
 color:#b08d57;
-text-decoration:none;
 }
 
-.footer-links a:hover{
-text-decoration:underline;
+.footer-social{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:15px;
+}
+
+.footer-social a{
+color:#b08d57;
+font-weight:500;
 }
 
 /* ================= WHATSAPP FLOAT ================= */
@@ -386,7 +393,6 @@ background:#25D366;
 color:white;
 padding:14px 18px;
 border-radius:50px;
-text-decoration:none;
 font-weight:bold;
 box-shadow:0 8px 25px rgba(0,0,0,0.3);
 z-index:1000;
@@ -436,4 +442,9 @@ font-size:30px;
 padding:12px 28px;
 }
 
-  }
+.whatsapp-btn{
+bottom:15px;
+right:15px;
+}
+
+                }
