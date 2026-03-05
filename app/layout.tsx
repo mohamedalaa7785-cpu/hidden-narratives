@@ -1,7 +1,6 @@
 import "./globals.css"
 import type { Metadata } from "next"
 import Link from "next/link"
-import Image from "next/image"
 import Script from "next/script"
 
 export const metadata: Metadata = {
@@ -33,22 +32,13 @@ description:"Deep historical storytelling platform",
 type:"website",
 locale:"en_US",
 siteName:"Hidden Narratives",
-url:"https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app",
-images:[
-{
-url:"/logo.jpg",
-width:1200,
-height:630,
-alt:"Hidden Narratives"
-}
-]
+url:"https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"
 },
 
 twitter:{
 card:"summary_large_image",
 title:"Hidden Narratives",
-description:"Deep historical storytelling platform",
-images:["/logo.jpg"]
+description:"Deep historical storytelling platform"
 },
 
 robots:{
@@ -113,15 +103,7 @@ strategy="afterInteractive"
 "@context":"https://schema.org",
 "@type":"WebSite",
 "name":"Hidden Narratives",
-"url":"https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app",
-"publisher":{
-"@type":"Organization",
-"name":"Hidden Narratives",
-"logo":{
-"@type":"ImageObject",
-"url":"https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app/logo.jpg"
-}
-}
+"url":"https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"
 }
 `}
 
@@ -139,15 +121,7 @@ strategy="afterInteractive"
 
 <Link href="/" className="logo">
 
-<Image
-src="/logo.jpg"
-alt="Hidden Narratives"
-width={40}
-height={40}
-priority
-/>
-
-<span>Hidden Narratives</span>
+Hidden Narratives
 
 </Link>
 
@@ -169,9 +143,7 @@ target="_blank"
 rel="noopener noreferrer"
 className="social-btn youtube"
 >
-
 YouTube
-
 </a>
 
 <a
@@ -180,9 +152,7 @@ target="_blank"
 rel="noopener noreferrer"
 className="social-btn facebook"
 >
-
 Facebook
-
 </a>
 
 <a
@@ -191,9 +161,7 @@ target="_blank"
 rel="noopener noreferrer"
 className="social-btn linkedin"
 >
-
 LinkedIn
-
 </a>
 
 </nav>
@@ -205,9 +173,7 @@ LinkedIn
 {/* MAIN */}
 
 <main className="main-content">
-
 {children}
-
 </main>
 
 {/* WHATSAPP FLOAT */}
@@ -218,9 +184,7 @@ target="_blank"
 rel="noopener noreferrer"
 className="whatsapp-btn"
 >
-
 WhatsApp
-
 </a>
 
 {/* FOOTER */}
@@ -230,9 +194,7 @@ WhatsApp
 <div className="footer-links">
 
 <Link href="/privacy">Privacy</Link>
-
 <Link href="/terms">Terms</Link>
-
 <Link href="/disclaimer">Disclaimer</Link>
 
 </div>
@@ -244,9 +206,7 @@ href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
 target="_blank"
 rel="noopener noreferrer"
 >
-
 YouTube
-
 </a>
 
 <a
@@ -254,9 +214,7 @@ href="https://www.facebook.com/share/182DKYKmki/"
 target="_blank"
 rel="noopener noreferrer"
 >
-
 Facebook
-
 </a>
 
 <a
@@ -264,9 +222,7 @@ href="https://wa.me/201210708572"
 target="_blank"
 rel="noopener noreferrer"
 >
-
 WhatsApp
-
 </a>
 
 </div>
