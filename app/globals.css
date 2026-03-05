@@ -34,28 +34,42 @@ z-index:1000;
 .nav-container{
 max-width:1200px;
 margin:auto;
-padding:18px 20px;
+padding:16px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+gap:20px;
 }
 
+/* ================= LOGO ================= */
+
 .logo{
+display:flex;
+align-items:center;
+gap:10px;
 color:#b08d57;
 text-decoration:none;
 font-weight:bold;
-font-size:22px;
-letter-spacing:1px;
-display:flex;
-align-items:center;
-gap:8px;
+font-size:18px;
+white-space:nowrap;
+}
+
+.logo img{
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo span{
+background:linear-gradient(45deg,#ffffff,#b08d57);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 /* ================= NAV LINKS ================= */
 
 .nav-links{
 display:flex;
-gap:25px;
+gap:22px;
 align-items:center;
 }
 
@@ -185,6 +199,13 @@ text-align:center;
 padding:80px 20px;
 }
 
+.newsletter form{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+}
+
 .newsletter input{
 padding:12px;
 width:280px;
@@ -198,7 +219,6 @@ outline:none;
 
 .newsletter button{
 padding:12px 25px;
-margin-left:10px;
 background:#b08d57;
 border:none;
 border-radius:8px;
@@ -397,15 +417,6 @@ flex-direction:column;
 flex-direction:column;
 }
 
-.newsletter input{
-width:100%;
-margin-bottom:10px;
-}
-
-.newsletter button{
-margin-left:0;
-}
-
 .hero{
 height:auto;
 padding:120px 20px;
@@ -418,7 +429,7 @@ padding:120px 20px;
 @media(max-width:500px){
 
 .hero-title{
-font-size:32px;
+font-size:30px;
 }
 
 .hero-btn{
