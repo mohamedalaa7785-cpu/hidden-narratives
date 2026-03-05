@@ -5,8 +5,9 @@ box-sizing:border-box;
 scroll-behavior:smooth;
 }
 
-body{
+html,body{
 margin:0;
+padding:0;
 background:#0d0d0d;
 color:white;
 font-family:Arial, Helvetica, sans-serif;
@@ -15,14 +16,16 @@ line-height:1.6;
 
 .main-content{
 padding-top:90px;
+min-height:100vh;
 }
 
 /* ================= NAVBAR ================= */
 
 .navbar{
 position:fixed;
+top:0;
 width:100%;
-background:rgba(0,0,0,0.9);
+background:rgba(0,0,0,0.92);
 backdrop-filter:blur(10px);
 border-bottom:1px solid #222;
 z-index:1000;
@@ -43,7 +46,12 @@ text-decoration:none;
 font-weight:bold;
 font-size:22px;
 letter-spacing:1px;
+display:flex;
+align-items:center;
+gap:8px;
 }
+
+/* ================= NAV LINKS ================= */
 
 .nav-links{
 display:flex;
@@ -85,7 +93,8 @@ padding:7px 15px;
 border-radius:30px;
 font-size:13px;
 font-weight:bold;
-transition:0.3s;
+transition:0.25s;
+display:inline-block;
 }
 
 .youtube{
@@ -94,6 +103,15 @@ color:black;
 }
 
 .youtube:hover{
+transform:scale(1.05);
+}
+
+.facebook{
+background:#1877F2;
+color:white;
+}
+
+.facebook:hover{
 transform:scale(1.05);
 }
 
@@ -117,6 +135,7 @@ align-items:center;
 justify-content:center;
 text-align:center;
 overflow:hidden;
+padding:20px;
 }
 
 .hero-overlay{
@@ -130,12 +149,12 @@ background-size:40px 40px;
 position:relative;
 z-index:2;
 max-width:800px;
-padding:20px;
 }
 
 .hero-title{
 font-size:64px;
 margin-bottom:20px;
+font-weight:700;
 }
 
 .hero-title span{
@@ -163,16 +182,18 @@ box-shadow:0 10px 25px rgba(176,141,87,0.3);
 
 .newsletter{
 text-align:center;
-padding:100px 20px;
+padding:80px 20px;
 }
 
 .newsletter input{
 padding:12px;
 width:280px;
+max-width:100%;
 background:#111;
 border:1px solid #333;
 color:white;
 border-radius:8px;
+outline:none;
 }
 
 .newsletter button{
@@ -183,6 +204,7 @@ border:none;
 border-radius:8px;
 cursor:pointer;
 transition:0.3s;
+font-weight:bold;
 }
 
 .newsletter button:hover{
@@ -192,17 +214,20 @@ transform:scale(1.05);
 /* ================= FEATURED ================= */
 
 .featured{
-padding:120px 20px;
+padding:80px 20px;
 text-align:center;
 }
 
 .featured-card{
 margin-top:40px;
 background:#141414;
-padding:60px;
+padding:50px;
 border-radius:20px;
 border:1px solid #b08d57;
 transition:0.3s;
+max-width:900px;
+margin-left:auto;
+margin-right:auto;
 }
 
 .featured-card:hover{
@@ -210,10 +235,10 @@ transform:translateY(-6px);
 box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
 
-/* ================= PREMIUM CTA ================= */
+/* ================= PREMIUM ================= */
 
 .premium-cta{
-padding:120px 20px;
+padding:80px 20px;
 text-align:center;
 background:#111;
 }
@@ -239,7 +264,7 @@ box-shadow:0 10px 25px rgba(176,141,87,0.3);
 
 .about-preview{
 display:flex;
-padding:120px 20px;
+padding:80px 20px;
 gap:50px;
 max-width:1200px;
 margin:auto;
@@ -255,6 +280,56 @@ height:300px;
 
 .about-text{
 flex:1;
+}
+
+/* ================= CONTACT FORM ================= */
+
+.contact-form{
+max-width:700px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+padding:40px 20px;
+}
+
+.contact-row{
+display:flex;
+gap:15px;
+}
+
+.contact-row input{
+flex:1;
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:12px;
+background:#111;
+border:1px solid #333;
+color:white;
+border-radius:8px;
+outline:none;
+}
+
+.contact-form textarea{
+min-height:140px;
+resize:vertical;
+}
+
+.contact-form button{
+padding:12px;
+background:#b08d57;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.contact-form button:hover{
+transform:scale(1.05);
 }
 
 /* ================= FOOTER ================= */
@@ -295,7 +370,7 @@ text-decoration:none;
 font-weight:bold;
 box-shadow:0 8px 25px rgba(0,0,0,0.3);
 z-index:1000;
-transition:0.3s;
+transition:0.25s;
 }
 
 .whatsapp-btn:hover{
@@ -311,11 +386,43 @@ display:none;
 }
 
 .hero-title{
-font-size:42px;
+font-size:38px;
 }
 
 .about-preview{
 flex-direction:column;
+}
+
+.contact-row{
+flex-direction:column;
+}
+
+.newsletter input{
+width:100%;
+margin-bottom:10px;
+}
+
+.newsletter button{
+margin-left:0;
+}
+
+.hero{
+height:auto;
+padding:120px 20px;
+}
+
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media(max-width:500px){
+
+.hero-title{
+font-size:32px;
+}
+
+.hero-btn{
+padding:12px 28px;
 }
 
   }
