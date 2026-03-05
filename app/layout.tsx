@@ -5,7 +5,7 @@ import Script from "next/script"
 
 export const metadata: Metadata = {
 
-metadataBase: new URL("https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"),
+metadataBase:new URL("https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"),
 
 title:{
 default:"Hidden Narratives",
@@ -56,12 +56,7 @@ return(
 
 <html lang="en">
 
-<head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://www.googletagmanager.com"/>
+<body>
 
 {/* Google AdSense */}
 
@@ -90,29 +85,6 @@ gtag('config', 'G-XXXXXXXXXX');
 
 </Script>
 
-{/* Structured Data */}
-
-<Script
-id="structured-data"
-type="application/ld+json"
-strategy="afterInteractive"
->
-
-{`
-{
-"@context":"https://schema.org",
-"@type":"WebSite",
-"name":"Hidden Narratives",
-"url":"https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"
-}
-`}
-
-</Script>
-
-</head>
-
-<body>
-
 {/* NAVBAR */}
 
 <header className="navbar">
@@ -120,21 +92,15 @@ strategy="afterInteractive"
 <div className="nav-container">
 
 <Link href="/" className="logo">
-
 Hidden Narratives
-
 </Link>
 
 <nav className="nav-links">
 
 <Link href="/">Home</Link>
-
 <Link href="/episodes">Episodes</Link>
-
 <Link href="/videos">Videos</Link>
-
 <Link href="/about">About</Link>
-
 <Link href="/contact">Contact</Link>
 
 <a
@@ -176,7 +142,7 @@ LinkedIn
 {children}
 </main>
 
-{/* WHATSAPP FLOAT */}
+{/* WHATSAPP */}
 
 <a
 href="https://wa.me/201210708572"
