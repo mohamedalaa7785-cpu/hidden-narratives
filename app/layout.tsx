@@ -55,6 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+
         {/* Google Search Console */}
         <meta
           name="google-site-verification"
@@ -63,18 +64,21 @@ export default function RootLayout({
 
         {/* Google AdSense */}
         <Script
+          id="adsense-script"
+          strategy="afterInteractive"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2457467624248791"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
+
       </head>
 
       <body>
+
         {/* Google Analytics */}
         <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
         />
 
         <Script id="google-analytics" strategy="afterInteractive">
@@ -86,8 +90,10 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Navbar */}
         <header className="navbar">
           <div className="nav-container">
+
             <Link href="/" className="logo">
               Hidden Narratives
             </Link>
@@ -125,12 +131,18 @@ export default function RootLayout({
               >
                 LinkedIn
               </a>
+
             </nav>
+
           </div>
         </header>
 
-        <main className="main-content">{children}</main>
+        {/* Main */}
+        <main className="main-content">
+          {children}
+        </main>
 
+        {/* WhatsApp */}
         <a
           href="https://wa.me/201210708572"
           target="_blank"
@@ -140,7 +152,9 @@ export default function RootLayout({
           WhatsApp
         </a>
 
+        {/* Footer */}
         <footer className="footer">
+
           <div className="footer-links">
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
@@ -148,6 +162,7 @@ export default function RootLayout({
           </div>
 
           <div className="footer-social">
+
             <a
               href="https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow"
               target="_blank"
@@ -171,11 +186,14 @@ export default function RootLayout({
             >
               WhatsApp
             </a>
+
           </div>
 
           <p>© {new Date().getFullYear()} Hidden Narratives</p>
+
         </footer>
+
       </body>
     </html>
   )
-                }
+          }
