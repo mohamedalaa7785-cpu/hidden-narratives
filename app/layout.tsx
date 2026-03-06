@@ -60,11 +60,7 @@ return(
 
 <meta name="google-site-verification" content="wq9nowZwnBPIzL-Er-1I1Va4CMv-RQ4QqtEsIbdO8fs" />
 
-<Script
-async
-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2457467624248791"
-crossOrigin="anonymous"
-/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2457467624248791" crossorigin="anonymous"></script>
 
 </head>
 
