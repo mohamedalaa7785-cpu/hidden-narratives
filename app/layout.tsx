@@ -5,7 +5,7 @@ import Script from "next/script"
 
 export const metadata: Metadata = {
 
-metadataBase:new URL("https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"),
+metadataBase:new URL("https://hiddennarratives.vercel.app"),
 
 title:{
 default:"Hidden Narratives",
@@ -32,7 +32,7 @@ description:"Deep historical storytelling platform",
 type:"website",
 locale:"en_US",
 siteName:"Hidden Narratives",
-url:"https://mohamedalaa7785-cpu-hidden-narratives-2f5g4sdqp-hamo-projects.vercel.app"
+url:"https://hiddennarratives.vercel.app"
 },
 
 twitter:{
@@ -55,6 +55,12 @@ children
 return(
 
 <html lang="en">
+
+<head>
+
+<meta name="google-site-verification" content="wq9nowZwnBPIzL-Er-1I1Va4CMv-RQ4QqtEsIbdO8fs" />
+
+</head>
 
 <body>
 
@@ -84,8 +90,6 @@ gtag('config', 'G-XXXXXXXXXX');
 `}
 
 </Script>
-
-{/* NAVBAR */}
 
 <header className="navbar">
 
@@ -136,13 +140,9 @@ LinkedIn
 
 </header>
 
-{/* MAIN */}
-
 <main className="main-content">
 {children}
 </main>
-
-{/* WHATSAPP */}
 
 <a
 href="https://wa.me/201210708572"
@@ -152,8 +152,6 @@ className="whatsapp-btn"
 >
 WhatsApp
 </a>
-
-{/* FOOTER */}
 
 <footer className="footer">
 
