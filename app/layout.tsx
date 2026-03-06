@@ -76,7 +76,7 @@ export default function RootLayout({
           content="wq9nowZwnBPIzL-Er-1I1Va4CMv-RQ4QqtEsIbdO8fs"
         />
 
-        {/* Structured Data (SEO) */}
+        {/* Structured Data */}
         <Script
           id="schema-organization"
           type="application/ld+json"
@@ -134,6 +134,7 @@ export default function RootLayout({
             </Link>
 
             <nav className="nav-links">
+
               <Link href="/">Home</Link>
               <Link href="/episodes">Episodes</Link>
               <Link href="/videos">Videos</Link>
@@ -169,13 +170,16 @@ export default function RootLayout({
               >
                 LinkedIn
               </a>
+
             </nav>
 
           </div>
         </header>
 
         {/* MAIN CONTENT */}
-        <main className="main-content">{children}</main>
+        <main className="main-content">
+          {children}
+        </main>
 
         {/* WHATSAPP BUTTON */}
         <a
@@ -232,4 +236,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-  }
+        }
