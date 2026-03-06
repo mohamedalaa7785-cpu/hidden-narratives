@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://hiddennarratives.vercel.app"),
 
   title: {
-    default: "Hidden Narratives | Ancient History & Lost Civilizations",
+    default: "Hidden Narratives – Ancient History, Lost Civilizations & Dark History",
     template: "%s | Hidden Narratives",
   },
 
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "documentary history",
     "historical analysis",
     "lost empires",
-    "ancient mysteries"
+    "ancient mysteries",
   ],
 
   authors: [{ name: "Mohamed Alaa" }],
@@ -66,10 +66,35 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+
+        {/* favicon */}
+        <link rel="icon" href="/favicon.ico" />
+
         {/* Google Search Console */}
         <meta
           name="google-site-verification"
           content="wq9nowZwnBPIzL-Er-1I1Va4CMv-RQ4QqtEsIbdO8fs"
+        />
+
+        {/* Structured Data (SEO) */}
+        <Script
+          id="schema-organization"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Hidden Narratives",
+              url: "https://hiddennarratives.vercel.app",
+              logo: "https://hiddennarratives.vercel.app/logo.png",
+              sameAs: [
+                "https://www.youtube.com/channel/UCIq_kU6XE1WuEmQXKaGF6ow",
+                "https://www.facebook.com/share/182DKYKmki/",
+                "https://www.linkedin.com/in/muhammed-alaa-0169b3385",
+              ],
+            }),
+          }}
         />
 
         {/* Google AdSense */}
@@ -89,12 +114,13 @@ export default function RootLayout({
 
         <Script id="google-analytics" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
           `}
         </Script>
+
       </head>
 
       <body>
@@ -108,7 +134,6 @@ export default function RootLayout({
             </Link>
 
             <nav className="nav-links">
-
               <Link href="/">Home</Link>
               <Link href="/episodes">Episodes</Link>
               <Link href="/videos">Videos</Link>
@@ -144,16 +169,13 @@ export default function RootLayout({
               >
                 LinkedIn
               </a>
-
             </nav>
 
           </div>
         </header>
 
         {/* MAIN CONTENT */}
-        <main className="main-content">
-          {children}
-        </main>
+        <main className="main-content">{children}</main>
 
         {/* WHATSAPP BUTTON */}
         <a
@@ -170,11 +192,9 @@ export default function RootLayout({
         <footer className="footer">
 
           <div className="footer-links">
-
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
             <Link href="/disclaimer">Disclaimer</Link>
-
           </div>
 
           <div className="footer-social">
@@ -212,4 +232,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-        }
+  }
