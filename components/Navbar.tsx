@@ -1,8 +1,38 @@
 "use client"
 
 import Link from "next/link"
+import { useState, useEffect } from "react"
+
+const translations = {
+  en: {
+    home: "Home",
+    episodes: "Episodes",
+    videos: "Videos",
+    about: "About",
+    contact: "Contact",
+    switchLang: "العربية"
+  },
+  ar: {
+    home: "الرئيسية",
+    episodes: "الحلقات",
+    videos: "الفيديوهات",
+    about: "حول الموقع",
+    contact: "اتصل بنا",
+    switchLang: "English"
+  }
+}
 
 export default function Navbar() {
+
+  const [lang, setLang] = useState<"en" | "ar">("en")
+
+  const t = translations[lang]
+
+  useEffect(() => {
+    document.documentElement.lang = lang
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"
+  }, [lang])
+
   return (
     <nav
       style={{
@@ -22,26 +52,44 @@ export default function Navbar() {
       </div>
 
       {/* Links */}
-      <div style={{ display: "flex", gap: "25px" }}>
+      <div style={{ display: "flex", gap: "25px", alignItems: "center" }}>
+
         <Link href="/" style={linkStyle}>
-          Home
+          {t.home}
         </Link>
 
         <Link href="/episodes" style={linkStyle}>
-          Episodes
+          {t.episodes}
         </Link>
 
         <Link href="/videos" style={linkStyle}>
-          Videos
+          {t.videos}
         </Link>
 
         <Link href="/about" style={linkStyle}>
-          About
+          {t.about}
         </Link>
 
         <Link href="/contact" style={linkStyle}>
-          Contact
+          {t.contact}
         </Link>
+
+        {/* Language Switch */}
+        <button
+          onClick={() => setLang(lang === "en" ? "ar" : "en")}
+          style={{
+            background: "#b08d57",
+            color: "#000",
+            border: "none",
+            padding: "6px 12px",
+            borderRadius: "4px",
+            cursor: "pointer",
+            fontSize: "13px"
+          }}
+        >
+          {t.switchLang}
+        </button>
+
       </div>
     </nav>
   )
