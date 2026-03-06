@@ -1,5 +1,5 @@
 import "./globals.css"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import Link from "next/link"
 import Script from "next/script"
 
@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://hiddennarratives.vercel.app"),
 
   title: {
-    default: "Hidden Narratives",
+    default: "Hidden Narratives | Ancient History & Lost Civilizations",
     template: "%s | Hidden Narratives",
   },
 
   description:
-    "Deep historical analysis, ancient civilizations, lost empires, and hidden stories behind history.",
+    "Hidden Narratives explores ancient civilizations, lost empires, and the untold stories behind history through deep analysis and documentary storytelling.",
 
   keywords: [
     "history",
@@ -22,29 +22,40 @@ export const metadata: Metadata = {
     "dark history",
     "documentary history",
     "historical analysis",
+    "lost empires",
+    "ancient mysteries"
   ],
 
   authors: [{ name: "Mohamed Alaa" }],
+  creator: "Mohamed Alaa",
 
   openGraph: {
     title: "Hidden Narratives",
-    description: "Deep historical storytelling platform",
-    type: "website",
-    locale: "en_US",
-    siteName: "Hidden Narratives",
+    description:
+      "Explore ancient civilizations, lost empires, and hidden stories behind history.",
     url: "https://hiddennarratives.vercel.app",
+    siteName: "Hidden Narratives",
+    locale: "en_US",
+    type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
     title: "Hidden Narratives",
-    description: "Deep historical storytelling platform",
+    description:
+      "Explore ancient civilizations, lost empires, and hidden stories behind history.",
   },
 
   robots: {
     index: true,
     follow: true,
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -55,7 +66,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-
         {/* Google Search Console */}
         <meta
           name="google-site-verification"
@@ -65,15 +75,11 @@ export default function RootLayout({
         {/* Google AdSense */}
         <Script
           id="adsense-script"
-          strategy="afterInteractive"
           async
+          strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2457467624248791"
           crossOrigin="anonymous"
         />
-
-      </head>
-
-      <body>
 
         {/* Google Analytics */}
         <Script
@@ -89,8 +95,11 @@ export default function RootLayout({
             gtag('config', 'G-XXXXXXXXXX');
           `}
         </Script>
+      </head>
 
-        {/* Navbar */}
+      <body>
+
+        {/* NAVBAR */}
         <header className="navbar">
           <div className="nav-container">
 
@@ -99,6 +108,7 @@ export default function RootLayout({
             </Link>
 
             <nav className="nav-links">
+
               <Link href="/">Home</Link>
               <Link href="/episodes">Episodes</Link>
               <Link href="/videos">Videos</Link>
@@ -110,6 +120,7 @@ export default function RootLayout({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-btn youtube"
+                aria-label="Hidden Narratives YouTube Channel"
               >
                 YouTube
               </a>
@@ -119,6 +130,7 @@ export default function RootLayout({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-btn facebook"
+                aria-label="Hidden Narratives Facebook Page"
               >
                 Facebook
               </a>
@@ -128,6 +140,7 @@ export default function RootLayout({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-btn linkedin"
+                aria-label="Hidden Narratives LinkedIn"
               >
                 LinkedIn
               </a>
@@ -137,28 +150,31 @@ export default function RootLayout({
           </div>
         </header>
 
-        {/* Main */}
+        {/* MAIN CONTENT */}
         <main className="main-content">
           {children}
         </main>
 
-        {/* WhatsApp */}
+        {/* WHATSAPP BUTTON */}
         <a
           href="https://wa.me/201210708572"
           target="_blank"
           rel="noopener noreferrer"
           className="whatsapp-btn"
+          aria-label="Contact on WhatsApp"
         >
           WhatsApp
         </a>
 
-        {/* Footer */}
+        {/* FOOTER */}
         <footer className="footer">
 
           <div className="footer-links">
+
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
             <Link href="/disclaimer">Disclaimer</Link>
+
           </div>
 
           <div className="footer-social">
@@ -196,4 +212,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-          }
+        }
