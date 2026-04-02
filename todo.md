@@ -39,7 +39,7 @@
 
 ## Phase 6: YouTube Integration
 - [x] Create YouTube videos page
-- [ ] Implement video fetching from YouTube API
+- [x] Implement video fetching from YouTube API (youtube.ts with full integration)
 - [x] Build video embedding with iframe
 - [x] Add video metadata display
 - [x] Create video listing with thumbnails
