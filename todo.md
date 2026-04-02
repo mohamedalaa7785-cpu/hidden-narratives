@@ -26,8 +26,8 @@
 - [x] Create robots.txt with proper directives
 - [x] Add Open Graph tags for social sharing
 - [x] Add Twitter Card tags
-- [ ] Implement canonical URLs
-- [ ] Add schema.org markup for episodes
+- [x] Implement canonical URLs (seoHelpers.ts)
+- [x] Add schema.org markup for episodes (seoHelpers.ts)
 
 ## Phase 5: AdSense-Ready Layout
 - [x] Design header with ad placement zone
@@ -66,14 +66,14 @@
 - [x] Create Terms of Service page
 - [x] Create Disclaimer page
 - [x] Add internal linking between legal pages
-- [ ] Ensure GDPR compliance
+- [x] Ensure GDPR compliance (gdpr.ts with consent management)
 
 ## Phase 10: Email Notifications & Webhooks
 - [x] Set up email notification system for contact submissions
 - [x] Set up email notification system for newsletter signups
-- [ ] Create GitHub webhook endpoint
-- [ ] Implement automatic episode publishing from webhook
-- [ ] Add webhook validation and security
+- [x] Create GitHub webhook endpoint (server/routes/webhook.ts)
+- [x] Implement automatic episode publishing from webhook
+- [x] Add webhook validation and security (HMAC signature verification)
 
 ## Phase 11: Performance Optimization
 - [x] Implement image lazy loading
