@@ -1,0 +1,18 @@
+# Vercel build ignore file
+.git
+.gitignore
+README.md
+DEPLOYMENT.md
+todo.md
+.env.local
+.env.*.local
+node_modules
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+coverage
+.nyc_output
+.vscode
+.idea
+*.log
+.DS_Store
