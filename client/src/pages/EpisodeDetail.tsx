@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Share2 } from "lucide-react";
 import { Streamdown } from "streamdown";
+import Breadcrumb from "@/components/Breadcrumb";
 
 type Language = "en" | "ar";
 
@@ -26,7 +27,12 @@ const translations = {
 };
 
 export default function EpisodeDetail() {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("language") as Language) || "en";
+    }
+    return "en";
+  });
   const [match, params] = useRoute("/episodes/:slug");
   const [, navigate] = useLocation();
 
@@ -37,6 +43,7 @@ export default function EpisodeDetail() {
   useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+    localStorage.setItem("language", language);
   }, [language]);
 
   if (!match) return null;
@@ -72,10 +79,18 @@ export default function EpisodeDetail() {
       {/* Content */}
       <section className="pt-32 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
+          <Breadcrumb
+            items={[
+              { label: t.relatedEpisodes.replace(" Episodes", "").replace(" حلقات", ""), href: "/episodes" },
+              { label: title || "Episode", href: `/episodes/${params?.slug}` },
+            ]}
+            language={language}
+          />
+
           <Button
             onClick={() => navigate("/episodes")}
             variant="ghost"
-            className="text-amber-600 hover:text-amber-400 mb-8"
+            className="text-amber-600 hover:text-amber-400 mb-8 mt-4"
           >
             <ArrowLeft className="mr-2" size={20} />
             {t.back}

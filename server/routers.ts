@@ -39,6 +39,7 @@ export const appRouter = router({
           throw new Error("Invalid email");
         }
         await db.subscribeEmail(input.email, input.language);
+        await sendNewsletterNotification(input.email);
         return { success: true, message: "Subscribed successfully" };
       }),
   }),
@@ -63,9 +64,36 @@ export const appRouter = router({
           message: input.message,
           language: input.language,
         });
+        await sendContactNotification(input);
         return { success: true, message: "Message sent successfully" };
       }),
   }),
 });
 
 export type AppRouter = typeof appRouter;
+
+// Email notification helpers
+async function sendContactNotification(data: any) {
+  try {
+    // Using Manus built-in notification system
+    const { notifyOwner } = await import("./_core/notification");
+    await notifyOwner({
+      title: `New Contact Form Submission from ${data.name}`,
+      content: `Email: ${data.email}\nSubject: ${data.subject}\n\nMessage:\n${data.message}`,
+    });
+  } catch (error) {
+    console.error("Failed to send contact notification:", error);
+  }
+}
+
+async function sendNewsletterNotification(email: string) {
+  try {
+    const { notifyOwner } = await import("./_core/notification");
+    await notifyOwner({
+      title: `New Newsletter Subscription`,
+      content: `Email: ${email}`,
+    });
+  } catch (error) {
+    console.error("Failed to send newsletter notification:", error);
+  }
+}

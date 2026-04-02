@@ -26,7 +26,12 @@ const translations = {
 };
 
 export default function Episodes() {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("language") as Language) || "en";
+    }
+    return "en";
+  });
   const [searchTerm, setSearchTerm] = useState("");
   const [, navigate] = useLocation();
 
@@ -36,6 +41,7 @@ export default function Episodes() {
   useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+    localStorage.setItem("language", language);
   }, [language]);
 
   const filteredEpisodes = episodes?.filter((ep: any) => {
