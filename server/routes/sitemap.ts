@@ -22,7 +22,14 @@ router.get('/sitemap.xml', async (req, res) => {
       { loc: `${baseUrl}/episodes`, lastmod: now, changefreq: 'daily', priority: '0.9' },
       { loc: `${baseUrl}/videos`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
       { loc: `${baseUrl}/about`, lastmod: now, changefreq: 'monthly', priority: '0.7' },
+      { loc: `${baseUrl}/contact`, lastmod: now, changefreq: 'monthly', priority: '0.7' },
+      { loc: `${baseUrl}/pricing`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+      { loc: `${baseUrl}/research-request`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+      { loc: `${baseUrl}/tasks`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+      { loc: `${baseUrl}/assistant`, lastmod: now, changefreq: 'weekly', priority: '0.8' },
+      { loc: `${baseUrl}/dashboard`, lastmod: now, changefreq: 'daily', priority: '0.6' },
       { loc: `${baseUrl}/privacy`, lastmod: now, changefreq: 'yearly', priority: '0.5' },
+      { loc: `${baseUrl}/privacy-policy`, lastmod: now, changefreq: 'yearly', priority: '0.5' },
       { loc: `${baseUrl}/terms`, lastmod: now, changefreq: 'yearly', priority: '0.5' },
       { loc: `${baseUrl}/disclaimer`, lastmod: now, changefreq: 'yearly', priority: '0.5' },
       ...allEpisodes.map((ep: any) => ({
@@ -56,6 +63,7 @@ Allow: /
 Disallow: /admin
 Disallow: /api
 Disallow: /private
+Disallow: /dashboard
 
 Sitemap: https://hiddennarratives.vercel.app/sitemap.xml
 
