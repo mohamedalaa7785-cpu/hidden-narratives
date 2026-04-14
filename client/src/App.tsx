@@ -12,38 +12,47 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Disclaimer from "./pages/Disclaimer";
 import Videos from "./pages/Videos";
+import ResearchRequest from "./pages/ResearchRequest";
+import TasksPage from "./pages/Tasks";
+import AssistantPage from "./pages/Assistant";
+import DashboardPage from "./pages/Dashboard";
+import PricingPage from "./pages/Pricing";
+import PaymentPage from "./pages/Payment";
+import AdminPage from "./pages/Admin";
+import AdminPaymentsPage from "./pages/AdminPayments";
+import ContactPage from "./pages/Contact";
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path="" component={Home} />
       <Route path="/episodes" component={Episodes} />
       <Route path="/episodes/:slug" component={EpisodeDetail} />
+      <Route path="/research-request" component={ResearchRequest} />
+      <Route path="/tasks" component={TasksPage} />
+      <Route path="/assistant" component={AssistantPage} />
+      <Route path="/dashboard" component={DashboardPage} />
+      <Route path="/pricing" component={PricingPage} />
+      <Route path="/payment" component={PaymentPage} />
+      <Route path="/admin" component={AdminPage} />
+      <Route path="/admin/payments" component={AdminPaymentsPage} />
       <Route path="/about" component={About} />
+      <Route path="/contact" component={ContactPage} />
       <Route path="/videos" component={Videos} />
       <Route path="/privacy" component={Privacy} />
+      <Route path="/privacy-policy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/disclaimer" component={Disclaimer} />
       <Route path="/404" component={NotFound} />
-      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-// NOTE: About Theme
-// - Using dark theme with amber/gold accent colors for historical aesthetic
-// - Color palette is configured in index.css for consistent dark mode styling
-// - Theme is not switchable to maintain consistent dark design throughout the site
-
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="dark"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
           <Router />
