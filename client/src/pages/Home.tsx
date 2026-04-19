@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
-import { BookOpen, Compass, Mail, PlayCircle } from "lucide-react";
+import { BookOpen, Compass, Mail, Menu, PlayCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Skeleton } from "@/components/ui/skeleton";
 import { usePageSEO, seoBaseUrl } from "@/lib/seoHead";
+import { trpc } from "@/lib/trpc";
 
 const primaryNav = [
   { label: "Home", path: "/" },
@@ -42,9 +45,11 @@ const featuredEpisodes = [
 
 export default function Home() {
   const [, navigate] = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [subscribing, setSubscribing] = useState(false);
   const [subscribeMsg, setSubscribeMsg] = useState<string | null>(null);
+  const { data: episodes, isLoading: episodesLoading } = trpc.episodes.list.useQuery();
 
   usePageSEO({
     title: "Hidden Narratives | Editorial History Platform",
@@ -90,10 +95,19 @@ export default function Home() {
     }
   };
 
+  const latestEpisodes = useMemo(() => (episodes ?? []).slice(0, 3), [episodes]);
+  const categories = useMemo(() => {
+    const values = new Set<string>();
+    for (const ep of episodes ?? []) {
+      if (ep.category) values.add(ep.category);
+    }
+    return Array.from(values).slice(0, 6);
+  }, [episodes]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
       <nav className="sticky top-0 z-50 border-b border-amber-900/30 bg-black/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
           <button
             onClick={() => navigate("/")}
             className="text-left text-2xl font-bold tracking-tight text-amber-500"
@@ -101,7 +115,7 @@ export default function Home() {
             Hidden Narratives
           </button>
 
-          <div className="flex flex-wrap items-center gap-3 text-sm md:text-base">
+          <div className="hidden items-center gap-3 text-sm md:flex md:text-base">
             {primaryNav.map((item) => (
               <button
                 key={item.path}
@@ -112,6 +126,43 @@ export default function Home() {
               </button>
             ))}
           </div>
+
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" className="md:hidden" aria-label="Open navigation menu">
+                <Menu className="h-6 w-6 text-amber-400" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="h-full w-[88%] border-slate-700 bg-slate-950 text-white">
+              <SheetHeader className="border-b border-slate-800">
+                <div className="flex items-center justify-between">
+                  <SheetTitle className="text-xl text-amber-400">Menu</SheetTitle>
+                  <SheetClose asChild>
+                    <Button variant="ghost" size="icon" aria-label="Close menu">
+                      <X className="h-5 w-5" />
+                    </Button>
+                  </SheetClose>
+                </div>
+              </SheetHeader>
+              <div className="flex h-full flex-col px-2 pb-6">
+                <div className="mt-4 space-y-2">
+                  {primaryNav.map((item) => (
+                    <button
+                      key={item.path}
+                      onClick={() => {
+                        navigate(item.path);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="w-full rounded-md px-4 py-3 text-left text-base text-slate-100 transition hover:bg-amber-500/10 hover:text-amber-300"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-auto border-t border-slate-800 pt-4 text-xs text-slate-400">© 2026 Hidden Narratives</div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
 
@@ -214,6 +265,62 @@ export default function Home() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-14 md:py-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="text-3xl font-bold text-amber-300 md:text-4xl">Latest episodes</h2>
+                <p className="mt-2 max-w-3xl text-slate-300">Freshly published editorial breakdowns from the archive.</p>
+              </div>
+              <Button onClick={() => navigate("/episodes")} variant="outline" className="border-amber-700 text-amber-300 hover:bg-amber-800/10">
+                Browse archive
+              </Button>
+            </div>
+            {episodesLoading ? (
+              <div className="grid gap-5 md:grid-cols-3">
+                {Array.from({ length: 3 }).map((_, idx) => (
+                  <Card key={idx} className="border-amber-900/40 bg-slate-950/70 p-6">
+                    <Skeleton className="mb-4 h-6 w-3/4 bg-slate-700" />
+                    <Skeleton className="mb-2 h-4 w-full bg-slate-800" />
+                    <Skeleton className="mb-2 h-4 w-full bg-slate-800" />
+                    <Skeleton className="h-4 w-2/3 bg-slate-800" />
+                  </Card>
+                ))}
+              </div>
+            ) : (
+              <div className="grid gap-5 md:grid-cols-3">
+                {latestEpisodes.map((episode: any) => (
+                  <Card key={episode.slug} className="h-full border-amber-900/40 bg-slate-950/70">
+                    <CardHeader>
+                      <CardTitle className="line-clamp-2 text-xl text-amber-300">{episode.titleEn}</CardTitle>
+                      <CardDescription className="text-slate-400">{episode.category ?? "history"}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="line-clamp-4 leading-relaxed text-slate-300">{episode.descriptionEn}</p>
+                      <button onClick={() => navigate(`/episodes/${episode.slug}`)} className="font-semibold text-amber-400 transition hover:text-amber-300">Read full episode →</button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section className="border-y border-amber-900/30 bg-slate-900/30 px-4 py-14 md:py-20">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="text-3xl font-bold text-amber-300 md:text-4xl">Categories</h2>
+            <p className="mt-2 max-w-3xl text-slate-300">Explore episodes by thematic lens.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {categories.map((category) => (
+                <button key={category} onClick={() => navigate("/episodes")} className="rounded-full border border-amber-700/50 bg-amber-900/10 px-4 py-2 text-sm font-semibold capitalize text-amber-200 hover:bg-amber-700/20">
+                  {category}
+                </button>
+              ))}
+              {!categories.length && <p className="text-slate-400">Categories will appear as new episodes are published.</p>}
             </div>
           </div>
         </section>
