@@ -19,7 +19,7 @@ export interface EpisodeSchemaData {
  * Generate canonical URL for a page
  */
 export function getCanonicalUrl(path: string): string {
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://hidden-narratives.com";
+  const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://hiddennarratives.vercel.app";
   return `${baseUrl}${path}`;
 }
 

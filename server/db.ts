@@ -242,6 +242,40 @@ export async function trackBehavior(payload: typeof userBehavior.$inferInsert) {
   await db.insert(userBehavior).values(payload);
 }
 
+
+export async function getAnalyticsOverview() {
+  const db = await getDb();
+  if (!db) return { pageViews: 0, topPages: [], webVitals: [], ctr: 0 };
+
+  const totals = await db
+    .select({ count: sql<number>`count(*)` })
+    .from(userBehavior);
+
+  const topPages = await db
+    .select({ page: userBehavior.page, views: sql<number>`count(*)` })
+    .from(userBehavior)
+    .groupBy(userBehavior.page)
+    .orderBy(sql`count(*) desc`)
+    .limit(10);
+
+  const webVitals = await db
+    .select({ interaction: userBehavior.interaction, avgTime: sql<number>`avg(${userBehavior.timeSpent})` })
+    .from(userBehavior)
+    .where(sql`${userBehavior.interaction} in ('LCP','CLS','INP')`)
+    .groupBy(userBehavior.interaction);
+
+  const clickEvents = await db
+    .select({ count: sql<number>`count(*)` })
+    .from(userBehavior)
+    .where(eq(userBehavior.interaction, "click"));
+
+  const pageViews = Number(totals[0]?.count ?? 0);
+  const clicks = Number(clickEvents[0]?.count ?? 0);
+  const ctr = pageViews > 0 ? (clicks / pageViews) * 100 : 0;
+
+  return { pageViews, topPages, webVitals, ctr };
+}
+
 export async function createPayment(payload: typeof payments.$inferInsert) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");

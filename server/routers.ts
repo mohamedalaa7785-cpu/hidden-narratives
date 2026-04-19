@@ -2,7 +2,7 @@ import { z } from "zod";
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, publicProcedure, router } from "./_core/trpc";
 import * as db from "./db";
 import * as youtube from "./youtube";
 import { invokeLLM } from "./_core/llm";
@@ -240,6 +240,11 @@ export const appRouter = router({
         await sendContactNotification(input);
         return { success: true, message: "Message sent successfully" };
       }),
+  }),
+
+
+  analytics: router({
+    admin: adminProcedure.query(async () => db.getAnalyticsOverview()),
   }),
 
   youtube: router({

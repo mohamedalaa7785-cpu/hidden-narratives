@@ -1,188 +1,58 @@
-import { useState, useEffect } from "react";
+
 import { useLocation } from "wouter";
-import { Button } from "@/components/ui/button";
+import { usePageSEO } from "@/lib/seoHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-type Language = "en" | "ar";
-
-const translations = {
-  en: {
-    disclaimer: "Disclaimer",
-    lastUpdated: "Last Updated: April 2026",
-    backHome: "Back to Home",
-    intro: "This disclaimer governs your use of the Hidden Narratives website. By accessing and using this website, you acknowledge that you have read, understood, and agree to be bound by all the provisions of this disclaimer.",
-    educational: "Educational Purpose",
-    educationalText: "The content on Hidden Narratives is provided for educational and informational purposes only. While we strive for accuracy, we do not guarantee that all information is completely accurate, current, or error-free.",
-    research: "Research and Analysis",
-    researchText: "Our analyses and interpretations of historical events represent our research and professional judgment. Different historians and researchers may have different interpretations of the same events. We encourage critical thinking and independent research.",
-    notAdvice: "Not Professional Advice",
-    notAdviceText: "The content on this website is not intended to provide professional, legal, financial, or medical advice. For specific advice related to your situation, please consult with qualified professionals.",
-    thirdParty: "Third-Party Content",
-    thirdPartyText: "Our website may contain links to third-party websites and resources. We are not responsible for the accuracy, completeness, or reliability of any third-party content. Your access to and use of third-party websites is at your own risk.",
-    liability: "Limitation of Liability",
-    liabilityText: "In no event shall Hidden Narratives, its owners, or its content providers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on the website.",
-    accuracy: "Accuracy of Information",
-    accuracyText: "While we make efforts to ensure the accuracy of information on our website, we do not warrant the accuracy, completeness, or timeliness of any information. You use the information at your own risk.",
-    changes: "Changes to Disclaimer",
-    changesText: "We reserve the right to modify this disclaimer at any time. Your continued use of the website following the posting of revised terms means that you accept and agree to the changes.",
-    contact: "Contact Us",
-    contactText: "If you have questions about this disclaimer, please contact us through our contact form on the website.",
-  },
-  ar: {
-    disclaimer: "إخلاء المسؤولية",
-    lastUpdated: "آخر تحديث: أبريل 2026",
-    backHome: "العودة إلى الرئيسية",
-    intro: "يحكم هذا الإخلاء استخدامك لموقع ما وراء الرواية. بالوصول واستخدام هذا الموقع، فإنك تقر بأنك قد قرأت وفهمت وتوافق على الالتزام بجميع أحكام هذا الإخلاء.",
-    educational: "الغرض التعليمي",
-    educationalText: "يتم توفير المحتوى على ما وراء الرواية لأغراض تعليمية وإعلامية فقط. بينما نسعى للدقة، لا نضمن أن جميع المعلومات دقيقة تماماً أو حالية أو خالية من الأخطاء.",
-    research: "البحث والتحليل",
-    researchText: "تمثل تحليلاتنا وتفسيراتنا للأحداث التاريخية بحثنا وحكمنا المهني. قد يكون لدى المؤرخين والباحثين المختلفين تفسيرات مختلفة لنفس الأحداث. نشجع التفكير النقدي والبحث المستقل.",
-    notAdvice: "ليس نصيحة مهنية",
-    notAdviceText: "المحتوى على هذا الموقع لا يقصد به تقديم نصيحة مهنية أو قانونية أو مالية أو طبية. للحصول على نصيحة محددة تتعلق بحالتك، يرجى استشارة المتخصصين المؤهلين.",
-    thirdParty: "محتوى الطرف الثالث",
-    thirdPartyText: "قد يحتوي موقعنا على روابط لمواقع ومصادر الطرف الثالث. نحن غير مسؤولين عن دقة أو اكتمال أو موثوقية أي محتوى من طرف ثالث. الوصول واستخدام مواقع الطرف الثالث يتم على مسؤوليتك الخاصة.",
-    liability: "تحديد المسؤولية",
-    liabilityText: "في أي حال من الأحوال، لن تكون ما وراء الرواية أو مالكوها أو موردو المحتوى مسؤولين عن أي أضرار (بما في ذلك، على سبيل المثال لا الحصر، الأضرار الناجمة عن فقدان البيانات أو الأرباح، أو بسبب انقطاع العمل) الناشئة عن استخدام أو عدم القدرة على استخدام المواد على الموقع.",
-    accuracy: "دقة المعلومات",
-    accuracyText: "بينما نبذل جهوداً لضمان دقة المعلومات على موقعنا، لا نضمن دقة أو اكتمال أو حداثة أي معلومات. تستخدم المعلومات على مسؤوليتك الخاصة.",
-    changes: "التغييرات على الإخلاء",
-    changesText: "نحتفظ بالحق في تعديل هذا الإخلاء في أي وقت. استمرارك في استخدام الموقع بعد نشر الشروط المعدلة يعني أنك توافق على التغييرات.",
-    contact: "تواصل معنا",
-    contactText: "إذا كان لديك أسئلة حول هذا الإخلاء، يرجى التواصل معنا من خلال نموذج الاتصال على الموقع.",
-  },
-};
+const navLinks = [
+  { label: "Home", path: "/" },
+  { label: "Episodes", path: "/episodes" },
+  { label: "Videos", path: "/videos" },
+  { label: "About", path: "/about" },
+  { label: "Contact", path: "/contact" },
+  { label: "Privacy", path: "/privacy" },
+  { label: "Terms", path: "/terms" },
+  { label: "Disclaimer", path: "/disclaimer" },
+];
 
 export default function Disclaimer() {
-  const [language, setLanguage] = useState<Language>("en");
   const [, navigate] = useLocation();
 
-  const t = translations[language];
+  usePageSEO({ title: "Disclaimer | Hidden Narratives", description: "Hidden Narratives disclaimer page.", path: "/disclaimer" });
 
-  useEffect(() => {
-    document.documentElement.lang = language;
-    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
-  }, [language]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-amber-900/30 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <button onClick={() => navigate("/")} className="text-2xl font-bold text-amber-600">
-            Hidden Narratives
-          </button>
-          <button
-            onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-            className="px-3 py-1 bg-amber-600 text-black rounded-full font-semibold hover:bg-amber-500 transition"
-          >
-            {language === "en" ? "العربية" : "English"}
-          </button>
+      <nav className="sticky top-0 z-50 border-b border-amber-900/30 bg-black/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between">
+          <button onClick={() => navigate("/")} className="text-2xl font-bold text-amber-500">Hidden Narratives</button>
+          <div className="flex flex-wrap gap-2 text-sm">
+            {navLinks.map((link) => (
+              <button key={link.path} onClick={() => navigate(link.path)} className="rounded-md px-2 py-1 text-slate-200 transition hover:bg-amber-500/10 hover:text-amber-300">
+                {link.label}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
 
-      {/* Content */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Button
-            onClick={() => navigate("/")}
-            variant="ghost"
-            className="text-amber-600 hover:text-amber-400 mb-8"
-          >
-            ← {t.backHome}
-          </Button>
+      <main className="mx-auto max-w-5xl space-y-6 px-4 py-12 md:py-16">
+        <header>
+          <h1 className="text-4xl font-bold text-amber-300 md:text-5xl">Disclaimer</h1>
+          <p className="mt-2 text-slate-400">Last updated: April 18, 2026</p>
+          <p className="mt-4 text-lg leading-relaxed text-slate-300">
+            Hidden Narratives publishes historical commentary and educational analysis. This material is intended to
+            inform public understanding, not to replace professional legal, financial, medical, or academic advice.
+          </p>
+        </header>
 
-          <h1 className="text-4xl font-bold text-amber-400 mb-2">{t.disclaimer}</h1>
-          <p className="text-gray-400 mb-8">{t.lastUpdated}</p>
+        <Card className="border-amber-900/40 bg-slate-900/70"><CardHeader><CardTitle className="text-amber-300">Editorial interpretation</CardTitle></CardHeader><CardContent className="space-y-3 leading-relaxed text-slate-300"><p>Historical evidence is often incomplete and interpretation can differ between scholars. Our episodes and essays reflect editorial judgment based on available sources at publication time.</p><p>Reasonable disagreement is expected in historical research. Readers are encouraged to consult multiple perspectives and primary materials where possible.</p></CardContent></Card>
 
-          <div className="space-y-8">
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardContent className="pt-6">
-                <p className="text-gray-300">{t.intro}</p>
-              </CardContent>
-            </Card>
+        <Card className="border-amber-900/40 bg-slate-900/70"><CardHeader><CardTitle className="text-amber-300">Accuracy and updates</CardTitle></CardHeader><CardContent className="space-y-3 leading-relaxed text-slate-300"><p>We work to maintain high factual standards, but we cannot guarantee that all material is complete or free from error. If credible corrections are submitted, we review and update content when warranted.</p></CardContent></Card>
 
-            {/* Educational */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <CardTitle className="text-amber-400">{t.educational}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.educationalText}</p>
-              </CardContent>
-            </Card>
+        <Card className="border-amber-900/40 bg-slate-900/70"><CardHeader><CardTitle className="text-amber-300">External links and platforms</CardTitle></CardHeader><CardContent className="space-y-3 leading-relaxed text-slate-300"><p>Some pages link to third-party websites, archives, video hosts, or social platforms. Hidden Narratives does not control external content and is not responsible for third-party policies, reliability, or availability.</p></CardContent></Card>
 
-            {/* Research */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <CardTitle className="text-amber-400">{t.research}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.researchText}</p>
-              </CardContent>
-            </Card>
-
-            {/* Not Advice */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <CardTitle className="text-amber-400">{t.notAdvice}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.notAdviceText}</p>
-              </CardContent>
-            </Card>
-
-            {/* Third Party */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <CardTitle className="text-amber-400">{t.thirdParty}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.thirdPartyText}</p>
-              </CardContent>
-            </Card>
-
-            {/* Liability */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <CardTitle className="text-amber-400">{t.liability}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.liabilityText}</p>
-              </CardContent>
-            </Card>
-
-            {/* Accuracy */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <CardTitle className="text-amber-400">{t.accuracy}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.accuracyText}</p>
-              </CardContent>
-            </Card>
-
-            {/* Changes */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <CardTitle className="text-amber-400">{t.changes}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.changesText}</p>
-              </CardContent>
-            </Card>
-
-            {/* Contact */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <CardTitle className="text-amber-400">{t.contact}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.contactText}</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+        <Card className="border-amber-900/40 bg-slate-900/70"><CardHeader><CardTitle className="text-amber-300">Liability limitation</CardTitle></CardHeader><CardContent className="space-y-3 leading-relaxed text-slate-300"><p>Use of this website is at your own discretion. To the fullest extent permitted by law, Hidden Narratives and its contributors are not liable for losses arising from reliance on site content or from inability to access the service.</p><p>For questions about this disclaimer, contact <a href="mailto:hiddennarratives.contact@gmail.com" className="underline hover:text-amber-300">hiddennarratives.contact@gmail.com</a>.</p></CardContent></Card>
+      </main>
     </div>
   );
 }

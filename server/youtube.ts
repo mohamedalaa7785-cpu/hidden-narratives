@@ -28,7 +28,7 @@ export async function getChannelVideos(maxResults: number = 12): Promise<YouTube
 
     if (!apiKey || !channelId) {
       console.warn("YouTube API key or channel ID not configured");
-      return getPlaceholderVideos();
+      return [];
     }
 
     // Get uploads playlist ID
@@ -42,7 +42,7 @@ export async function getChannelVideos(maxResults: number = 12): Promise<YouTube
 
     const uploadsPlaylistId = channelResponse.data.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
     if (!uploadsPlaylistId) {
-      return getPlaceholderVideos();
+      return [];
     }
 
     // Get videos from uploads playlist
@@ -61,10 +61,10 @@ export async function getChannelVideos(maxResults: number = 12): Promise<YouTube
       description: item.snippet.description,
       thumbnail: item.snippet.thumbnails.high?.url || item.snippet.thumbnails.default?.url,
       publishedAt: item.snippet.publishedAt,
-    })) || getPlaceholderVideos();
+    })) || [];
   } catch (error) {
     console.error("Failed to fetch YouTube videos:", error);
-    return getPlaceholderVideos();
+    return [];
   }
 }
 
@@ -96,32 +96,6 @@ export async function getVideoStats(videoId: string): Promise<{ viewCount: numbe
     console.error("Failed to fetch video stats:", error);
     return null;
   }
-}
-
-/**
- * Get placeholder videos for development/fallback
- */
-function getPlaceholderVideos(): YouTubeVideo[] {
-  return [
-    {
-      id: "dQw4w9WgXcQ",
-      title: "Hidden Narratives - Episode 1",
-      description: "Deep historical analysis of ancient civilizations",
-      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
-      publishedAt: new Date().toISOString(),
-      viewCount: 1000,
-      likeCount: 50,
-    },
-    {
-      id: "jNQXAC9IVRw",
-      title: "Hidden Narratives - Episode 2",
-      description: "Exploring lost power structures",
-      thumbnail: "https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg",
-      publishedAt: new Date(Date.now() - 86400000).toISOString(),
-      viewCount: 800,
-      likeCount: 40,
-    },
-  ];
 }
 
 /**

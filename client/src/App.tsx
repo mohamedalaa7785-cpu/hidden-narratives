@@ -20,12 +20,19 @@ import PricingPage from "./pages/Pricing";
 import PaymentPage from "./pages/Payment";
 import AdminPage from "./pages/Admin";
 import AdminPaymentsPage from "./pages/AdminPayments";
+import AdminAnalyticsPage from "./pages/AdminAnalytics";
 import ContactPage from "./pages/Contact";
+import PremiumPage from "./pages/Premium";
+import SupportPage from "./pages/Support";
+import { ConsentBanner, ConsentAwareAnalytics } from "./components/ConsentBanner";
+import LocalizedHome from "./pages/LocalizedHome";
 
 function Router() {
   return (
     <Switch>
       <Route path="" component={Home} />
+      <Route path="/en" component={() => <LocalizedHome lang="en" />} />
+      <Route path="/ar" component={() => <LocalizedHome lang="ar" />} />
       <Route path="/episodes" component={Episodes} />
       <Route path="/episodes/:slug" component={EpisodeDetail} />
       <Route path="/research-request" component={ResearchRequest} />
@@ -36,6 +43,7 @@ function Router() {
       <Route path="/payment" component={PaymentPage} />
       <Route path="/admin" component={AdminPage} />
       <Route path="/admin/payments" component={AdminPaymentsPage} />
+      <Route path="/admin/analytics" component={AdminAnalyticsPage} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/videos" component={Videos} />
@@ -43,6 +51,8 @@ function Router() {
       <Route path="/privacy-policy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/disclaimer" component={Disclaimer} />
+      <Route path="/premium" component={PremiumPage} />
+      <Route path="/support" component={SupportPage} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -55,6 +65,8 @@ function App() {
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
+          <ConsentAwareAnalytics />
+          <ConsentBanner />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

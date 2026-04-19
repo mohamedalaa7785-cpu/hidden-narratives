@@ -5,9 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useBehaviorTracker } from "@/hooks/useBehaviorTracker";
+import { usePageSEO } from "@/lib/seoHead";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function ResearchRequest() {
+  useAuth({ redirectOnUnauthenticated: true });
   useBehaviorTracker("/research-request");
+  usePageSEO({ title: "Research Request | Hidden Narratives", description: "Private research request", path: "/research-request", robots: "noindex,nofollow" });
+
   const [form, setForm] = useState({ title: "", field: "", pages: 3, type: "academic", language: "English" });
   const [result, setResult] = useState("");
   const mutation = trpc.research.request.useMutation();
@@ -19,8 +24,8 @@ export default function ResearchRequest() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto text-white">
-      <Card className="bg-slate-900 border-slate-700">
+    <div className="mx-auto max-w-4xl p-6 text-white">
+      <Card className="border-slate-700 bg-slate-900">
         <CardHeader><CardTitle>AI Research Generator</CardTitle></CardHeader>
         <CardContent>
           <form className="grid gap-3" onSubmit={submit}>
@@ -34,15 +39,6 @@ export default function ResearchRequest() {
           {result && (
             <div className="mt-6 space-y-3">
               <Textarea value={result} readOnly className="min-h-80" />
-              <Button onClick={() => {
-                const blob = new Blob([result], { type: "text/plain" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = `${form.title || "research"}.txt`;
-                a.click();
-                URL.revokeObjectURL(url);
-              }}>Download</Button>
             </div>
           )}
         </CardContent>
