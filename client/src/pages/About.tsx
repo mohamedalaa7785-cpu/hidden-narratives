@@ -1,151 +1,127 @@
-import { useState, useEffect } from "react";
+
 import { useLocation } from "wouter";
+import { usePageSEO } from "@/lib/seoHead";
+import { BookOpenText, Landmark, Telescope, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, BookOpen, Globe } from "lucide-react";
 
-type Language = "en" | "ar";
-
-const translations = {
-  en: {
-    about: "About Hidden Narratives",
-    mission: "Our Mission",
-    missionText: "Hidden Narratives is an independent research platform dedicated to uncovering forgotten historical structures and power dynamics through cinematic storytelling. We explore the hidden forces that shaped civilizations and continue to influence our world.",
-    values: "Our Values",
-    research: "Deep Research",
-    researchText: "We conduct thorough historical analysis, examining primary sources and scholarly research to provide accurate, nuanced perspectives.",
-    independence: "Independence",
-    independenceText: "We operate independently, free from corporate or political influence, ensuring our analysis remains objective and unbiased.",
-    storytelling: "Cinematic Storytelling",
-    storytellingText: "We believe history should be engaging and accessible. Our narratives combine rigorous research with compelling storytelling.",
-    contact: "Get in Touch",
-    backHome: "Back to Home",
-  },
-  ar: {
-    about: "حول ما وراء الرواية",
-    mission: "مهمتنا",
-    missionText: "ما وراء الرواية هي منصة بحثية مستقلة تهدف إلى كشف الهياكل التاريخية المخفية وديناميكيات القوة من خلال السرد الوثائقي السينمائي. نستكشف القوى الخفية التي شكلت الحضارات وتستمر في التأثير على عالمنا.",
-    values: "قيمنا",
-    research: "البحث العميق",
-    researchText: "نجري تحليلاً تاريخياً شاملاً، نفحص المصادر الأولية والأبحاث العلمية لتقديم وجهات نظر دقيقة ومتوازنة.",
-    independence: "الاستقلالية",
-    independenceText: "نعمل بشكل مستقل، بعيداً عن التأثير الشركاتي أو السياسي، مما يضمن بقاء تحليلنا موضوعياً ومحايداً.",
-    storytelling: "السرد السينمائي",
-    storytellingText: "نؤمن بأن التاريخ يجب أن يكون جذاباً وسهل الوصول إليه. تجمع رواياتنا بين البحث الصارم والسرد الجذاب.",
-    contact: "تواصل معنا",
-    backHome: "العودة إلى الرئيسية",
-  },
-};
+const navLinks = [
+  { label: "Home", path: "/" },
+  { label: "Episodes", path: "/episodes" },
+  { label: "Videos", path: "/videos" },
+  { label: "About", path: "/about" },
+  { label: "Contact", path: "/contact" },
+  { label: "Privacy", path: "/privacy" },
+  { label: "Terms", path: "/terms" },
+  { label: "Disclaimer", path: "/disclaimer" },
+];
 
 export default function About() {
-  const [language, setLanguage] = useState<Language>("en");
   const [, navigate] = useLocation();
 
-  const t = translations[language];
+  usePageSEO({ title: "About Hidden Narratives | Mission and Method", description: "Hidden Narratives about page.", path: "/about" });
 
-  useEffect(() => {
-    document.documentElement.lang = language;
-    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
-  }, [language]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-amber-900/30 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <button onClick={() => navigate("/")} className="text-2xl font-bold text-amber-600">
+      <nav className="sticky top-0 z-50 border-b border-amber-900/30 bg-black/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between">
+          <button onClick={() => navigate("/")} className="text-2xl font-bold text-amber-500">
             Hidden Narratives
           </button>
-          <button
-            onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-            className="px-3 py-1 bg-amber-600 text-black rounded-full font-semibold hover:bg-amber-500 transition"
-          >
-            {language === "en" ? "العربية" : "English"}
-          </button>
+          <div className="flex flex-wrap gap-2 text-sm">
+            {navLinks.map((link) => (
+              <button
+                key={link.path}
+                onClick={() => navigate(link.path)}
+                className="rounded-md px-2 py-1 text-slate-200 transition hover:bg-amber-500/10 hover:text-amber-300"
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
 
-      {/* Header */}
-      <section className="pt-32 pb-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-amber-400 mb-4">{t.about}</h1>
-          <Button
-            onClick={() => navigate("/")}
-            variant="ghost"
-            className="text-amber-600 hover:text-amber-400"
-          >
-            ← {t.backHome}
-          </Button>
-        </div>
-      </section>
+      <main className="mx-auto max-w-5xl space-y-10 px-4 py-12 md:py-16">
+        <header className="space-y-5">
+          <h1 className="text-4xl font-bold text-amber-300 md:text-5xl">About Hidden Narratives</h1>
+          <p className="text-lg leading-relaxed text-slate-300">
+            Hidden Narratives is an independent editorial history project. We investigate the less visible systems
+            behind major events—bureaucracies, religious institutions, military logistics, trade law, and media
+            narratives—so readers can understand how power actually moved through time.
+          </p>
+          <p className="text-lg leading-relaxed text-slate-300">
+            Our work sits at the intersection of historical research and public storytelling: we aim to be accurate
+            enough for serious readers while remaining clear and engaging for non-specialists.
+          </p>
+        </header>
 
-      {/* Mission */}
-      <section className="px-4 py-12">
-        <div className="max-w-4xl mx-auto">
-          <Card className="bg-slate-800 border-amber-900/30 mb-8">
+        <section className="grid gap-5 md:grid-cols-2">
+          <Card className="border-amber-900/40 bg-slate-900/70">
             <CardHeader>
-              <CardTitle className="text-amber-400">{t.mission}</CardTitle>
+              <Landmark className="mb-2 h-6 w-6 text-amber-400" />
+              <CardTitle className="text-amber-300">Our editorial mission</CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-gray-300 text-lg">{t.missionText}</p>
+            <CardContent className="leading-relaxed text-slate-300">
+              We focus on historical analysis that explains causation, not just chronology. Instead of asking only
+              "what happened," we ask who benefited, who paid the cost, what institutions made decisions possible,
+              and how later generations reframed the story.
             </CardContent>
           </Card>
-        </div>
-      </section>
 
-      {/* Values */}
-      <section className="px-4 py-12 bg-slate-800/50 border-y border-amber-900/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-amber-400 mb-8">{t.values}</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Research */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <BookOpen className="text-amber-600 mb-2" size={32} />
-                <CardTitle className="text-amber-400">{t.research}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.researchText}</p>
-              </CardContent>
-            </Card>
+          <Card className="border-amber-900/40 bg-slate-900/70">
+            <CardHeader>
+              <BookOpenText className="mb-2 h-6 w-6 text-amber-400" />
+              <CardTitle className="text-amber-300">Research approach</CardTitle>
+            </CardHeader>
+            <CardContent className="leading-relaxed text-slate-300">
+              We build episodes from primary-source references where possible and compare competing scholarly views
+              when interpretation is disputed. This gives readers a map of the debate rather than a single,
+              oversimplified conclusion.
+            </CardContent>
+          </Card>
 
-            {/* Independence */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <Globe className="text-amber-600 mb-2" size={32} />
-                <CardTitle className="text-amber-400">{t.independence}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.independenceText}</p>
-              </CardContent>
-            </Card>
+          <Card className="border-amber-900/40 bg-slate-900/70">
+            <CardHeader>
+              <Telescope className="mb-2 h-6 w-6 text-amber-400" />
+              <CardTitle className="text-amber-300">What makes us different</CardTitle>
+            </CardHeader>
+            <CardContent className="leading-relaxed text-slate-300">
+              We do not publish high-volume generic summaries. Hidden Narratives is built as a curated archive with
+              themed series, long-form context, and strong internal linking so each piece helps readers understand
+              the next one in greater depth.
+            </CardContent>
+          </Card>
 
-            {/* Storytelling */}
-            <Card className="bg-slate-800 border-amber-900/30">
-              <CardHeader>
-                <Users className="text-amber-600 mb-2" size={32} />
-                <CardTitle className="text-amber-400">{t.storytelling}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{t.storytellingText}</p>
-              </CardContent>
-            </Card>
+          <Card className="border-amber-900/40 bg-slate-900/70">
+            <CardHeader>
+              <Users className="mb-2 h-6 w-6 text-amber-400" />
+              <CardTitle className="text-amber-300">Who this is for</CardTitle>
+            </CardHeader>
+            <CardContent className="leading-relaxed text-slate-300">
+              Our audience includes students, researchers, podcast listeners, and curious general readers who want
+              historical content that is thoughtful, evidence-aware, and written with a clear editorial voice.
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="rounded-xl border border-amber-900/30 bg-slate-900/50 p-6 text-center md:p-8">
+          <h2 className="text-2xl font-bold text-white md:text-3xl">Explore the archive</h2>
+          <p className="mx-auto mt-3 max-w-3xl text-slate-300">
+            Start with featured episodes, continue through companion videos, and reach out if you want to suggest a
+            topic for a future investigation.
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-3">
+            <Button onClick={() => navigate("/episodes")} className="bg-amber-600 font-bold text-black hover:bg-amber-700">
+              Browse Episodes
+            </Button>
+            <Button onClick={() => navigate("/contact")} variant="outline" className="border-amber-700 text-amber-300 hover:bg-amber-800/10">
+              Contact the Editorial Team
+            </Button>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="px-4 py-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-amber-400 mb-6">{t.contact}</h2>
-          <Button
-            onClick={() => navigate("/")}
-            className="bg-amber-600 hover:bg-amber-700 text-black font-bold px-8 py-6"
-          >
-            {t.contact}
-          </Button>
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
   );
 }

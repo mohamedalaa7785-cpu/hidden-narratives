@@ -4,9 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useBehaviorTracker } from "@/hooks/useBehaviorTracker";
+import { usePageSEO } from "@/lib/seoHead";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function TasksPage() {
+  useAuth({ redirectOnUnauthenticated: true });
   useBehaviorTracker("/tasks");
+  usePageSEO({ title: "Tasks | Hidden Narratives", description: "Private tasks", path: "/tasks", robots: "noindex,nofollow" });
+
   const [goal, setGoal] = useState("");
   const generate = trpc.tasks.generate.useMutation();
   const tasks = trpc.tasks.mine.useQuery();
@@ -19,8 +24,8 @@ export default function TasksPage() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto text-white space-y-4">
-      <Card className="bg-slate-900 border-slate-700">
+    <div className="mx-auto max-w-4xl space-y-4 p-6 text-white">
+      <Card className="border-slate-700 bg-slate-900">
         <CardHeader><CardTitle>Task Generator</CardTitle></CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="flex gap-2">
@@ -30,13 +35,13 @@ export default function TasksPage() {
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="border-slate-700 bg-slate-900">
         <CardHeader><CardTitle>My Generated Plans</CardTitle></CardHeader>
         <CardContent className="space-y-4">
           {tasks.data?.map((item) => (
-            <div key={item.id} className="border border-slate-700 rounded p-3">
+            <div key={item.id} className="rounded border border-slate-700 p-3">
               <p className="font-semibold">{item.input}</p>
-              <pre className="text-sm whitespace-pre-wrap mt-2">{item.result}</pre>
+              <pre className="mt-2 whitespace-pre-wrap text-sm">{item.result}</pre>
             </div>
           ))}
         </CardContent>

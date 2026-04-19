@@ -134,11 +134,7 @@ export function generateSitemap(episodes: any[]) {
   const urls = [
     { loc: baseUrl, lastmod: now, changefreq: "weekly", priority: "1.0" },
     { loc: `${baseUrl}/episodes`, lastmod: now, changefreq: "daily", priority: "0.9" },
-    { loc: `${baseUrl}/videos`, lastmod: now, changefreq: "weekly", priority: "0.8" },
     { loc: `${baseUrl}/about`, lastmod: now, changefreq: "monthly", priority: "0.7" },
-    { loc: `${baseUrl}/privacy`, lastmod: now, changefreq: "yearly", priority: "0.5" },
-    { loc: `${baseUrl}/terms`, lastmod: now, changefreq: "yearly", priority: "0.5" },
-    { loc: `${baseUrl}/disclaimer`, lastmod: now, changefreq: "yearly", priority: "0.5" },
     ...episodes.map((ep: any) => ({
       loc: `${baseUrl}/episodes/${ep.slug}`,
       lastmod: ep.updatedAt?.split("T")[0] || now,
@@ -163,7 +159,11 @@ export function generateRobotsTxt() {
 Allow: /
 Disallow: /admin
 Disallow: /api
-Disallow: /private
+Disallow: /dashboard
+Disallow: /assistant
+Disallow: /tasks
+Disallow: /payment
+Disallow: /research-request
 
 Sitemap: https://hiddennarratives.vercel.app/sitemap.xml
 

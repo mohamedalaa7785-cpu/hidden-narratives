@@ -1,77 +1,45 @@
 <!doctype html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <meta name="description" content="Hidden Narratives - Exploring deep historical narratives and untold stories from around the world. Bilingual podcast platform with episodes in English and Arabic." />
-    <meta name="keywords" content="podcast, history, narratives, stories, bilingual, english, arabic" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hidden Narratives is an editorial history platform publishing episodes, video essays, and long-form analysis." />
     <meta name="author" content="Hidden Narratives" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="bingbot" content="index, follow" />
-    <meta name="google-site-verification" content="" />
-    <meta name="msvalidate.01" content="" />
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Hidden Narratives - Podcast Platform" />
-    <meta property="og:description" content="Exploring deep historical narratives and untold stories. Bilingual content in English and Arabic." />
-    <meta property="og:url" content="https://hidden-narratives.vercel.app" />
-    <meta property="og:site_name" content="Hidden Narratives" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="ar_SA" />
-    
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hidden Narratives - Podcast Platform" />
-    <meta name="twitter:description" content="Exploring deep historical narratives and untold stories." />
-    
-    <!-- Google AdSense -->
-    <meta name="google-adsense-account" content="ca-pub-xxxxxxxxxxxxxxxx" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://hidden-narratives.vercel.app" />
-    
-    <!-- Alternate Language Links -->
-    <link rel="alternate" hreflang="en" href="https://hidden-narratives.vercel.app" />
-    <link rel="alternate" hreflang="ar" href="https://hidden-narratives.vercel.app" />
-    <link rel="alternate" hreflang="x-default" href="https://hidden-narratives.vercel.app" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "PodcastSeries",
-      "name": "Hidden Narratives",
-      "description": "Exploring deep historical narratives and untold stories from around the world",
-      "url": "https://hidden-narratives.vercel.app",
-      "author": {
-        "@type": "Organization",
-        "name": "Hidden Narratives"
-      },
-      "inLanguage": ["en", "ar"]
-    }
-    </script>
-    
-    <title>Hidden Narratives - Podcast Platform</title>
-  </head>
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
 
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hidden Narratives | Editorial History Platform" />
+    <meta property="og:description" content="Original historical analysis and documentary storytelling from Hidden Narratives." />
+    <meta property="og:url" content="https://hiddennarratives.vercel.app" />
+    <meta property="og:image" content="https://hiddennarratives.vercel.app/og-image.jpg" />
+    <meta property="og:site_name" content="Hidden Narratives" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hidden Narratives | Editorial History Platform" />
+    <meta name="twitter:description" content="Original historical analysis and documentary storytelling from Hidden Narratives." />
+    <meta name="twitter:image" content="https://hiddennarratives.vercel.app/og-image.jpg" />
+
+    <link rel="canonical" href="https://hiddennarratives.vercel.app" />
+    <link rel="alternate" hreflang="en" href="https://hiddennarratives.vercel.app?lang=en" />
+    <link rel="alternate" hreflang="ar" href="https://hiddennarratives.vercel.app?lang=ar" />
+    <link rel="alternate" hreflang="x-default" href="https://hiddennarratives.vercel.app" />
+    <link rel="alternate" type="application/rss+xml" title="Hidden Narratives RSS" href="https://hiddennarratives.vercel.app/rss.xml" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Hidden Narratives",
+        "url": "https://hiddennarratives.vercel.app",
+        "description": "Editorial historical analysis, long-form episodes, and documentary-style videos.",
+        "inLanguage": ["en", "ar"]
+      }
+    </script>
+
+    <title>Hidden Narratives | Editorial History Platform</title>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
   </body>
-
 </html>

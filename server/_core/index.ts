@@ -7,6 +7,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import sitemapRouter from "../routes/sitemap";
+import contentRoutes from "../routes/contentRoutes";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -35,8 +36,9 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
-  // Sitemap and robots.txt
+  // Sitemap, robots, RSS, OG, and subscribe endpoints
   app.use("/", sitemapRouter);
+  app.use("/", contentRoutes);
   // tRPC API
   app.use(
     "/api/trpc",

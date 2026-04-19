@@ -4,11 +4,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useBehaviorTracker } from "@/hooks/useBehaviorTracker";
+import { usePageSEO } from "@/lib/seoHead";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
 export default function AssistantPage() {
+  useAuth({ redirectOnUnauthenticated: true });
   useBehaviorTracker("/assistant");
+  usePageSEO({ title: "Assistant | Hidden Narratives", description: "Private assistant", path: "/assistant", robots: "noindex,nofollow" });
+
   const [message, setMessage] = useState("");
   const [history, setHistory] = useState<ChatMessage[]>([]);
   const chat = trpc.assistant.chat.useMutation();
@@ -24,11 +29,11 @@ export default function AssistantPage() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto text-white">
-      <Card className="bg-slate-900 border-slate-700">
+    <div className="mx-auto max-w-4xl p-6 text-white">
+      <Card className="border-slate-700 bg-slate-900">
         <CardHeader><CardTitle>AI Assistant</CardTitle></CardHeader>
         <CardContent>
-          <div className="h-[420px] overflow-y-auto border border-slate-700 rounded p-3 space-y-3 mb-3">
+          <div className="mb-3 h-[420px] space-y-3 overflow-y-auto rounded border border-slate-700 p-3">
             {history.map((msg, idx) => (
               <div key={idx} className={msg.role === "user" ? "text-right" : "text-left"}>
                 <span className="text-xs text-slate-400">{msg.role}</span>

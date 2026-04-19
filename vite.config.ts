@@ -167,6 +167,21 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules/streamdown")) return "markdown-renderer";
+          if (id.includes("node_modules/mermaid")) return "mermaid";
+          if (id.includes("node_modules/@shikijs") || id.includes("node_modules/shiki")) return "shiki";
+          if (id.includes("node_modules/react") || id.includes("node_modules/react-dom")) return "react-vendor";
+          if (id.includes("node_modules/@trpc") || id.includes("node_modules/@tanstack")) return "data-vendor";
+          if (id.includes("node_modules/lucide-react")) return "ui-icons";
+          if (id.includes("node_modules")) return "vendor";
+          return undefined;
+        },
+      },
+    },
   },
   server: {
     host: true,

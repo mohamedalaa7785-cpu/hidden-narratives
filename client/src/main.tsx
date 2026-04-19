@@ -7,6 +7,8 @@ import superjson from "superjson";
 import App from "./App";
 import { getLoginUrl } from "./const";
 import "./index.css";
+import { trackCoreWebVitals } from "./lib/coreWebVitals";
+import { clientLogger } from "./lib/logger";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +27,7 @@ queryClient.getQueryCache().subscribe(event => {
   if (event.type === "updated" && event.action.type === "error") {
     const error = event.query.state.error;
     redirectToLoginIfUnauthorized(error);
-    console.error("[API Query Error]", error);
+    clientLogger.error("API query failed", { error: String(error) });
   }
 });
 
@@ -33,7 +35,7 @@ queryClient.getMutationCache().subscribe(event => {
   if (event.type === "updated" && event.action.type === "error") {
     const error = event.mutation.state.error;
     redirectToLoginIfUnauthorized(error);
-    console.error("[API Mutation Error]", error);
+    clientLogger.error("API mutation failed", { error: String(error) });
   }
 });
 
@@ -59,3 +61,6 @@ createRoot(document.getElementById("root")!).render(
     </QueryClientProvider>
   </trpc.Provider>
 );
+
+
+trackCoreWebVitals();
